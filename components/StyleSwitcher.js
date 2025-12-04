@@ -5,15 +5,12 @@ import { useState, useEffect } from "react";
 
 export default function StyleSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentStyle, setCurrentStyle] = useState("minimal-clean");
+const [currentStyle, setCurrentStyle] = useState("retro-comic-light");
 
-  const styles = [
-    { id: "playful-modern", name: "Playful Modern", emoji: "🎨" },
-    { id: "rainbow-burst", name: "Rainbow Burst", emoji: "🌈" },
-    { id: "minimal-clean", name: "Minimal Clean", emoji: "✨" },
-    { id: "neon-pop", name: "Neon Pop", emoji: "💫" },
-    { id: "retro-comic", name: "Retro Comic", emoji: "💥" }
-  ];
+const styles = [
+  { id: "retro-comic-light", name: "Light Mode", emoji: "☀️" },
+  { id: "retro-comic-dark", name: "Dark Mode", emoji: "🌙" }
+];
 
   useEffect(() => {
     const saved = localStorage.getItem("judy-style");
