@@ -3,7 +3,7 @@ import { getSiteConfig, getNavigation, getCategory, getJokesByCategory, getPageS
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
-import JokeCard from "@/components/JokeCard";
+import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import "../styles.css";
 
 export async function generateMetadata({ params }) {
@@ -66,11 +66,7 @@ export default async function CategoryPage({ params }) {
 
         <section className="jokes-section">
           <div className="container">
-            <div className="jokes-grid">
-              {jokes.map((joke, i) => (
-                <JokeCard key={i} joke={joke} index={i} />
-              ))}
-            </div>
+            <RandomJokeGenerator jokes={jokes} />
           </div>
         </section>
       </main>
