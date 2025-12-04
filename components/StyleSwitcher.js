@@ -20,7 +20,7 @@ export default function StyleSwitcher() {
     
     try {
       // Direct call to your Google Apps Script Web App
-      const scriptUrl = "https://script.google.com/macros/s/AKfycbzSGktzBgBbFRaXZfSeYDG34iSqFmLpOjBCmIzduF4AmQf9CB1aRCTPqHw_PMqx9oqlUQ/exec"; // Replace with your actual URL
+      const scriptUrl = "YOUR_WEB_APP_URL_HERE"; // Replace with your actual URL
       
       const response = await fetch(scriptUrl, {
         method: "POST",

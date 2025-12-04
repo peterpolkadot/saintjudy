@@ -2,7 +2,6 @@
 import { getSiteConfig, getNavigation, getCategories, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import StyleSwitcher from "@/components/StyleSwitcher";
 import Link from "next/link";
 import "../styles.css";
 
@@ -24,7 +23,6 @@ export default async function CategoriesPage() {
   return (
     <>
       <Navigation config={config} links={navigation} />
-      <StyleSwitcher />
       
       <main>
         <section className="hero hero-small">
