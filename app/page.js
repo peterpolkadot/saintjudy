@@ -2,6 +2,7 @@
 import { getSiteConfig, getNavigation, getCategories, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import StyleSwitcher from "@/components/StyleSwitcher";
 import "./styles.css";
 import Link from "next/link";
 
@@ -23,6 +24,7 @@ export default async function HomePage() {
   return (
     <>
       <Navigation config={config} links={navigation} />
+      <StyleSwitcher />
       
       <main>
         {/* Hero Section */}
