@@ -41,12 +41,20 @@ export default async function CategoryPage({ params }) {
     );
   }
 
+  const heroStyle = categoryData.image_url 
+    ? { backgroundImage: `url(${categoryData.image_url})` }
+    : {};
+
+  const heroClass = categoryData.image_url 
+    ? "hero hero-small hero-with-bg"
+    : "hero hero-small";
+
   return (
     <>
       <Navigation config={config} links={navigation} />
       
       <main>
-        <section className="hero hero-small">
+        <section className={heroClass} style={heroStyle}>
           <div className="hero-content">
             <h1 className="hero-title">{getCategoryEmoji(category)} {categoryData.category_name}</h1>
             <p className="hero-subtitle">Get ready to laugh!</p>
