@@ -271,12 +271,6 @@
   font-size: 14px;
 }
 
-@media (max-width: 768px) {
-  .hero-title { font-size: 36px; }
-  .nav-logo { font-size: 20px; }
-  .categories-grid { grid-template-columns: 1fr; }
-}
-
 /* STYLE SWITCHER */
 .style-switcher {
   position: fixed;
@@ -377,7 +371,19 @@
   color: white;
 }
 
+.style-emoji {
+  font-size: 24px;
+}
+
+.style-name {
+  flex: 1;
+}
+
 @media (max-width: 768px) {
+  .hero-title { font-size: 36px; }
+  .nav-logo { font-size: 20px; }
+  .categories-grid { grid-template-columns: 1fr; }
+  
   .style-switcher {
     bottom: 20px;
     right: 20px;
