@@ -40,16 +40,21 @@ export default async function HomePage() {
             <h2 className="section-title">Joke Categories</h2>
             <p className="section-subtitle">Choose your favorite type of joke!</p>
             
-            <div className="categories-grid">
-              {categories.map((cat) => (
-                <Link key={cat.category_slug} href={`/${cat.category_slug}`} className="category-card">
-                  <div className="category-emoji">
-                    {getCategoryEmoji(cat.category_slug)}
-                  </div>
-                  <h3>{cat.category_name}</h3>
-                </Link>
-              ))}
-            </div>
+<div className="categories-grid">
+  {categories.map((cat) => (
+    <Link key={cat.category_slug} href={`/${cat.category_slug}`} className="category-card">
+      {cat.image_url && (
+        <div className="category-image">
+          <img src={cat.image_url} alt={cat.category_name} />
+        </div>
+      )}
+      <div className="category-emoji">
+        {getCategoryEmoji(cat.category_slug)}
+      </div>
+      <h3>{cat.category_name}</h3>
+    </Link>
+  ))}
+</div>
           </div>
         </section>
       </main>
