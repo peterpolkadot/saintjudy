@@ -37,6 +37,11 @@ export default async function CategoriesPage() {
             <div className="categories-grid">
               {categories.map((cat) => (
                 <Link key={cat.category_slug} href={`/${cat.category_slug}`} className="category-card">
+                  {cat.image_url && (
+                    <div className="category-image">
+                      <img src={cat.image_url} alt={cat.category_name} />
+                    </div>
+                  )}
                   <div className="category-emoji">
                     {getCategoryEmoji(cat.category_slug)}
                   </div>
