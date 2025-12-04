@@ -27,7 +27,6 @@ export default async function HomePage() {
       <StyleSwitcher />
       
       <main>
-        {/* Hero Section */}
         <section className="hero">
           <div className="hero-content">
             <h1 className="hero-title">🎭 Welcome to Judy's Jokes! 🎭</h1>
@@ -36,7 +35,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Categories Grid */}
         <section className="categories-section">
           <div className="container">
             <h2 className="section-title">Joke Categories</h2>

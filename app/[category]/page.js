@@ -2,6 +2,7 @@
 import { getSiteConfig, getNavigation, getCategory, getJokesByCategory, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import StyleSwitcher from "@/components/StyleSwitcher";
 import JokeCard from "@/components/JokeCard";
 import "../styles.css";
 
@@ -28,6 +29,7 @@ export default async function CategoryPage({ params }) {
     return (
       <>
         <Navigation config={config} links={navigation} />
+        <StyleSwitcher />
         <main>
           <section className="hero hero-small">
             <div className="hero-content">
@@ -52,6 +54,7 @@ export default async function CategoryPage({ params }) {
   return (
     <>
       <Navigation config={config} links={navigation} />
+      <StyleSwitcher />
       
       <main>
         <section className={heroClass} style={heroStyle}>

@@ -14,3 +14,7 @@ Add environment variables:
 - / (home)
 - /categories (browse all categories)
 - /[category] (dynamic category pages)
+
+## Style Switcher
+
+Click the 🎨 button to instantly change styles!

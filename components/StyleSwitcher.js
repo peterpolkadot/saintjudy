@@ -1,11 +1,11 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function StyleSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [currentStyle, setCurrentStyle] = useState("minimal-clean");
 
   const styles = [
     { id: "playful-modern", name: "Playful Modern", emoji: "🎨" },
@@ -15,31 +15,34 @@ export default function StyleSwitcher() {
     { id: "retro-comic", name: "Retro Comic", emoji: "💥" }
   ];
 
-  const handleStyleChange = async (styleId) => {
-    setLoading(true);
-    
-    try {
-      // Direct call to your Google Apps Script Web App
-      const scriptUrl = "YOUR_WEB_APP_URL_HERE"; // Replace with your actual URL
-      
-      const response = await fetch(scriptUrl, {
-        method: "POST",
-        mode: "no-cors", // Important for Google Apps Script
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ style: styleId })
-      });
-
-      // With no-cors, we can't read the response, so just assume success
-      setIsOpen(false);
-      setLoading(false);
-      
-      alert(`✅ Style change triggered: ${styles.find(s => s.id === styleId).name}!\n\nThe site will redeploy in 1-2 minutes.\nRefresh your browser to see the new style!`);
-      
-    } catch (error) {
-      console.error("Error changing style:", error);
-      setLoading(false);
-      alert("❌ Error changing style. Check console for details.");
+  useEffect(() => {
+    const saved = localStorage.getItem("judy-style");
+    if (saved && styles.find(s => s.id === saved)) {
+      setCurrentStyle(saved);
+      loadStylesheet(saved);
+    } else {
+      loadStylesheet(currentStyle);
     }
+  }, []);
+
+  const loadStylesheet = (styleId) => {
+    const oldLink = document.getElementById("theme-stylesheet");
+    if (oldLink) {
+      oldLink.remove();
+    }
+
+    const link = document.createElement("link");
+    link.id = "theme-stylesheet";
+    link.rel = "stylesheet";
+    link.href = `/styles/${styleId}.css`;
+    document.head.appendChild(link);
+  };
+
+  const handleStyleChange = (styleId) => {
+    setCurrentStyle(styleId);
+    setIsOpen(false);
+    localStorage.setItem("judy-style", styleId);
+    loadStylesheet(styleId);
   };
 
   return (
@@ -48,9 +51,8 @@ export default function StyleSwitcher() {
         className="style-switcher-button"
         onClick={() => setIsOpen(!isOpen)}
         title="Change Site Style"
-        disabled={loading}
       >
-        {loading ? "⏳" : "🎨"}
+        🎨
       </button>
 
       {isOpen && (
@@ -63,20 +65,14 @@ export default function StyleSwitcher() {
             {styles.map((style) => (
               <button
                 key={style.id}
-                className="style-option"
+                className={`style-option ${currentStyle === style.id ? "active" : ""}`}
                 onClick={() => handleStyleChange(style.id)}
-                disabled={loading}
               >
                 <span className="style-emoji">{style.emoji}</span>
                 <span className="style-name">{style.name}</span>
               </button>
             ))}
           </div>
-          {loading && (
-            <div style={{ textAlign: "center", marginTop: "10px", fontSize: "14px", color: "#666" }}>
-              ⏳ Triggering deployment...
-            </div>
-          )}
         </div>
       )}
     </div>
