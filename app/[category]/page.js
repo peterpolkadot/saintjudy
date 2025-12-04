@@ -57,12 +57,11 @@ export default async function CategoryPage({ params }) {
       <StyleSwitcher />
       
       <main>
-        <section className={heroClass} style={heroStyle}>
-          <div className="hero-content">
-            <h1 className="hero-title">{getCategoryEmoji(category)} {categoryData.category_name}</h1>
-            <p className="hero-subtitle">Get ready to laugh!</p>
-          </div>
-        </section>
+<section className={heroClass} style={heroStyle}>
+  <div className="hero-content">
+    <h1 className="hero-title">{getCategoryEmoji(category)} {categoryData.category_name}</h1>
+  </div>
+</section>
 
         <section className="jokes-section">
           <div className="container">
