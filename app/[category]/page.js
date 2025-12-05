@@ -1,10 +1,11 @@
 
-import { getSiteConfig, getNavigation, getCategory, getSubcategories, getAllJokesForParent, getPageSEO } from "@/lib/getSiteData";
+import { getSiteConfig, getNavigation, getCategory, getSubcategories, getAllJokesForParent, getParentCategories, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import SubcategoryCards from "@/components/SubcategoryCards";
+import RelatedCategories from "@/components/RelatedCategories";
 import "../styles.css";
 
 export async function generateMetadata({ params }) {
@@ -26,6 +27,12 @@ export default async function CategoryPage({ params }) {
   const categoryData = await getCategory(category);
   const subcategories = await getSubcategories(category);
   const jokes = await getAllJokesForParent(category);
+  const allCategories = await getParentCategories();
+  
+  // Get 3 random categories (excluding current one)
+  const otherCategories = allCategories
+    .filter(cat => cat.category_slug !== category)
+    .sort(() => Math.random() - 0.5);
 
   if (!categoryData) {
     return (
@@ -67,8 +74,9 @@ export default async function CategoryPage({ params }) {
 
         <section className="jokes-section">
           <div className="container">
-            {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} />}
+            {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} categoryName={categoryData.category_name} />}
             {subcategories.length > 0 && <SubcategoryCards subcategories={subcategories} parentSlug={category} />}
+            <RelatedCategories categories={otherCategories} />
           </div>
         </section>
       </main>

@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-export default function RandomJokeGenerator({ jokes }) {
+export default function RandomJokeGenerator({ jokes, categoryName }) {
   const [currentJoke, setCurrentJoke] = useState(null);
   const [revealed, setRevealed] = useState(false);
 
@@ -17,7 +17,7 @@ export default function RandomJokeGenerator({ jokes }) {
     <div className="joke-generator">
       {!currentJoke ? (
         <div className="joke-generator-start">
-          <h2 className="generator-title">Ready for a Joke?</h2>
+          <h2 className="generator-title">Ready for a {categoryName} Joke?</h2>
           <p className="generator-subtitle">We have {jokes.length} hilarious jokes in this category!</p>
           <button className="generate-btn" onClick={getRandomJoke}>
             🎲 Get Random Joke
