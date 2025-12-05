@@ -1,5 +1,5 @@
 
-import { getSiteConfig, getNavigation, getCategories, getPageSEO } from "@/lib/getSiteData";
+import { getSiteConfig, getNavigation, getParentCategories, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
@@ -19,7 +19,7 @@ export async function generateMetadata() {
 export default async function CategoriesPage() {
   const config = await getSiteConfig();
   const navigation = await getNavigation();
-  const categories = await getCategories();
+  const categories = await getParentCategories();
 
   return (
     <>
@@ -44,9 +44,7 @@ export default async function CategoriesPage() {
                       <img src={cat.image_url} alt={cat.category_name} />
                     </div>
                   )}
-                  <div className="category-emoji">
-                    {getCategoryEmoji(cat.category_slug)}
-                  </div>
+                  {!cat.image_url && <div className="category-emoji">{cat.emoji}</div>}
                   <h3>{cat.category_name}</h3>
                 </Link>
               ))}
@@ -58,15 +56,4 @@ export default async function CategoriesPage() {
       <Footer config={config} />
     </>
   );
-}
-
-function getCategoryEmoji(slug) {
-  const emojis = {
-    "animal-jokes": "🐶",
-    "school-jokes": "📚",
-    "food-jokes": "🍕",
-    "dad-jokes": "👨",
-    "silly-jokes": "🤪"
-  };
-  return emojis[slug] || "😂";
 }

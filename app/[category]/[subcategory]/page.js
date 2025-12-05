@@ -1,31 +1,29 @@
 
-import { getSiteConfig, getNavigation, getCategory, getSubcategories, getAllJokesForParent, getPageSEO } from "@/lib/getSiteData";
+import { getSiteConfig, getNavigation, getCategory, getJokesByCategory, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
-import SubcategoryCards from "@/components/SubcategoryCards";
-import "../styles.css";
+import "../../styles.css";
 
 export async function generateMetadata({ params }) {
-  const { category } = params;
-  const seo = await getPageSEO(category);
+  const { subcategory } = params;
+  const seo = await getPageSEO(subcategory);
   
   return {
-    title: seo?.meta_title || `${category} | Judy's Jokes`,
+    title: seo?.meta_title || `${subcategory} | Judy's Jokes`,
     description: seo?.meta_description || "Funny jokes for kids",
     keywords: seo?.keywords?.split(",") || [],
   };
 }
 
-export default async function CategoryPage({ params }) {
-  const { category } = params;
+export default async function SubcategoryPage({ params }) {
+  const { category, subcategory } = params;
   
   const config = await getSiteConfig();
   const navigation = await getNavigation();
-  const categoryData = await getCategory(category);
-  const subcategories = await getSubcategories(category);
-  const jokes = await getAllJokesForParent(category);
+  const categoryData = await getCategory(subcategory);
+  const jokes = await getJokesByCategory(subcategory);
 
   if (!categoryData) {
     return (
@@ -67,8 +65,7 @@ export default async function CategoryPage({ params }) {
 
         <section className="jokes-section">
           <div className="container">
-            {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} />}
-            {subcategories.length > 0 && <SubcategoryCards subcategories={subcategories} parentSlug={category} />}
+            <RandomJokeGenerator jokes={jokes} />
           </div>
         </section>
       </main>

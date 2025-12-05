@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 
 export default function StyleSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
-const [currentStyle, setCurrentStyle] = useState("retro-comic-light");
+  const [currentStyle, setCurrentStyle] = useState("retro-comic-light");
 
-const styles = [
-  { id: "retro-comic-light", name: "Light Mode", emoji: "☀️" },
-  { id: "retro-comic-dark", name: "Dark Mode", emoji: "🌙" }
-];
+  const styles = [
+    { id: "retro-comic-light", name: "Light Mode", emoji: "☀️" },
+    { id: "retro-comic-dark", name: "Dark Mode", emoji: "🌙" }
+  ];
 
   useEffect(() => {
     const saved = localStorage.getItem("judy-style");
