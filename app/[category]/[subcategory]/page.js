@@ -1,11 +1,13 @@
 
-import { 
-  getSiteConfig, 
-  getNavigation, 
-  getCategory, 
-  getJokesByCategory, 
-  getParentCategories, 
-  getPageSEO 
+import {
+  getSiteConfig,
+  getNavigation,
+  getCategory,
+  getSubcategories,
+  getJokesForSubcategory,
+  getParentCategories,
+  readableSlug,
+  getPageSEO
 } from "@/lib/getSiteData";
 
 import Navigation from "@/components/Navigation";
@@ -13,33 +15,45 @@ import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import RelatedCategories from "@/components/RelatedCategories";
-import NoJokesYet from "@/components/NoJokesYet";
+
 import "../../styles.css";
 
+/* -------------------------------------------------------------
+   SEO
+------------------------------------------------------------- */
 export async function generateMetadata({ params }) {
   const { subcategory } = params;
+  const readable = readableSlug(subcategory);
+
   const seo = await getPageSEO(subcategory);
 
   return {
-    title: seo?.meta_title || `${subcategory} | Judy's Jokes`,
-    description: seo?.meta_description || "Funny jokes for kids",
-    keywords: seo?.keywords?.split(",") || [],
+    title: seo?.meta_title || `${readable} | Judy's Jokes`,
+    description: seo?.meta_description || `Jokes for ${readable}`,
+    keywords: seo?.keywords?.split(",") || []
   };
 }
 
+/* -------------------------------------------------------------
+   RENDER SUBCATEGORY PAGE
+------------------------------------------------------------- */
 export default async function SubcategoryPage({ params }) {
-  const { subcategory } = params;
+  const { category, subcategory } = params;
 
   const config = await getSiteConfig();
   const navigation = await getNavigation();
+
+  // Get the CATEGORY record that matches this subcategory_slug
   const categoryData = await getCategory(subcategory);
-  const jokes = await getJokesByCategory(subcategory);
-  const allParents = await getParentCategories();
 
-  const related = allParents
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+  // Get the ACTUAL jokes for this subcategory
+  const jokes = await getJokesForSubcategory(subcategory);
 
+  // For sidebar/related section
+  const parentCats = await getParentCategories();
+  const randomCategories = parentCats.sort(() => Math.random() - 0.5).slice(0, 3);
+
+  // If no category row exists, show 404
   if (!categoryData) {
     return (
       <>
@@ -48,8 +62,8 @@ export default async function SubcategoryPage({ params }) {
         <main>
           <section className="hero hero-small">
             <div className="hero-content">
-              <h1 className="hero-title">Category Not Found</h1>
-              <p className="hero-subtitle">Oops! That subcategory doesn’t exist.</p>
+              <h1 className="hero-title">Subcategory Not Found</h1>
+              <p className="hero-subtitle">Sorry, that page doesn't exist.</p>
             </div>
           </section>
         </main>
@@ -58,13 +72,8 @@ export default async function SubcategoryPage({ params }) {
     );
   }
 
-  const heroStyle = categoryData.image_url 
-    ? { backgroundImage: `url(${categoryData.image_url})` }
-    : {};
-
-  const heroClass = categoryData.image_url
-    ? "hero hero-small hero-with-bg"
-    : "hero hero-small";
+  const heroStyle = categoryData.image_url ? { backgroundImage: `url(${categoryData.image_url})` } : {};
+  const heroClass = categoryData.image_url ? "hero hero-small hero-with-bg" : "hero hero-small";
 
   return (
     <>
@@ -74,19 +83,19 @@ export default async function SubcategoryPage({ params }) {
       <main>
         <section className={heroClass} style={heroStyle}>
           <div className="hero-content">
-            <h1 className="hero-title">{categoryData.emoji} {categoryData.category_name}</h1>
+            <h1 className="hero-title">
+              {categoryData.emoji} {categoryData.category_name}
+            </h1>
           </div>
         </section>
 
         <section className="jokes-section">
           <div className="container">
-            {jokes.length > 0 ? (
-              <RandomJokeGenerator jokes={jokes} categoryName={categoryData.category_name} />
-            ) : (
-              <NoJokesYet name={categoryData.category_name} />
-            )}
-
-            <RelatedCategories categories={related} />
+            <RandomJokeGenerator
+              jokes={jokes}
+              categoryName={categoryData.category_name}
+            />
+            <RelatedCategories categories={randomCategories} />
           </div>
         </section>
       </main>
