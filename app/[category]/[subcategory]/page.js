@@ -3,54 +3,93 @@ import {
   getCategory, 
   getSubcategories, 
   getJokesForSubcategory, 
-  readableSlug 
+  readableSlug, 
+  getSiteConfig,
+  getNavigation,
+  getPageSEO 
 } from "@/lib/getSiteData";
+
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import StyleSwitcher from "@/components/StyleSwitcher";
+import RandomJokeGenerator from "@/components/RandomJokeGenerator";
+import NoJokesYet from "@/components/NoJokesYet";
+import "../../styles.css";
+
+export async function generateMetadata({ params }) {
+  const { category, subcategory } = params;
+  const seoKey = `${category}/${subcategory}`;
+  const seo = await getPageSEO(seoKey);
+
+  return {
+    title: seo?.meta_title || `${readableSlug(subcategory)} Jokes`,
+    description: seo?.meta_description || "Funny jokes from this category",
+    keywords: seo?.keywords?.split(",") || [],
+  };
+}
 
 export default async function SubcategoryPage({ params }) {
   const parentSlug = params.category;
-  const subcategorySlug = params.subcategory;
+  const subSlug = params.subcategory;
 
-  // Load parent category
+  const config = await getSiteConfig();
+  const navigation = await getNavigation();
+
+  // Parent category details (emoji + display name)
   const parent = await getCategory(parentSlug);
 
-  // Load subcategories for sidebar navigation
+  // Subcategory list for navigation
   const subcategories = await getSubcategories(parentSlug);
 
-  // Load jokes FOR THIS subcategory
-  const jokes = await getJokesForSubcategory(subcategorySlug);
+  // Jokes for this specific subcategory
+  const jokes = await getJokesForSubcategory(subSlug);
+
+  const currentSub = subcategories.find(s => s.subcategory_slug === subSlug);
 
   return (
-    <div className="page-container">
-      <h1 className="page-title">
-        {parent?.emoji} {readableSlug(subcategorySlug)}
-      </h1>
+    <>
+      <Navigation config={config} links={navigation} />
+      <StyleSwitcher />
 
-      {/* Subcategory selector */}
-      <div className="subcategory-list">
-        {subcategories.map((s) => (
-          <a
-            key={s.subcategory_slug}
-            href={"/"+parentSlug+"/"+s.subcategory_slug}
-            className={s.subcategory_slug === subcategorySlug ? "active" : ""}
-          >
-            {s.emoji} {s.subcategory_name}
-          </a>
-        ))}
-      </div>
-
-      {/* Joke List */}
-      <div className="joke-list">
-        {jokes.length === 0 && (
-          <p>No jokes found in this category yet!</p>
-        )}
-
-        {jokes.map((j, i) => (
-          <div key={i} className="joke-card">
-            <h3>{j.emoji} {j.setup}</h3>
-            <p>{j.punchline}</p>
+      <main>
+        <section className="hero hero-small">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              {parent?.emoji} {currentSub?.subcategory_name || readableSlug(subSlug)}
+            </h1>
           </div>
-        ))}
-      </div>
-    </div>
+        </section>
+
+        <section className="jokes-section">
+          <div className="container">
+
+            {jokes.length > 0 ? (
+              <RandomJokeGenerator 
+                jokes={jokes} 
+                categoryName={currentSub?.subcategory_name || readableSlug(subSlug)} 
+              />
+            ) : (
+              <NoJokesYet name={currentSub?.subcategory_name || readableSlug(subSlug)} />
+            )}
+
+            {/* Subcategory selector list */}
+            <div className="subcategory-list">
+              {subcategories.map((s) => (
+                <a
+                  key={s.subcategory_slug}
+                  href={`/${parentSlug}/${s.subcategory_slug}`}
+                  className={s.subcategory_slug === subSlug ? "active" : ""}
+                >
+                  {s.emoji} {s.subcategory_name}
+                </a>
+              ))}
+            </div>
+
+          </div>
+        </section>
+      </main>
+
+      <Footer config={config} />
+    </>
   );
 }
