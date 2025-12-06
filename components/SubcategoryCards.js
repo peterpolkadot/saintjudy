@@ -5,20 +5,25 @@ export default function SubcategoryCards({ subcategories, parentSlug }) {
   return (
     <div className="subcategories-section">
       <h2 className="section-title">More {parentSlug.replace('-', ' ')} Categories</h2>
+
       <div className="categories-grid">
-        {subcategories.map((subcat) => (
-          <Link 
-            key={subcat.category_slug} 
-            href={`/${parentSlug}/${subcat.category_slug}`} 
+        {subcategories.map((sub) => (
+          <Link
+            key={sub.subcategory_slug}
+            href={`/${parentSlug}/${sub.subcategory_slug}`}
             className="category-card"
           >
-            {subcat.image_url && (
+            {sub.image_url && (
               <div className="category-image">
-                <img src={subcat.image_url} alt={subcat.category_name} />
+                <img src={sub.image_url} alt={sub.subcategory_name} />
               </div>
             )}
-            {!subcat.image_url && <div className="category-emoji">{subcat.emoji}</div>}
-            <h3>{subcat.category_name}</h3>
+
+            {!sub.image_url && (
+              <div className="category-emoji">{sub.emoji}</div>
+            )}
+
+            <h3>{sub.subcategory_name}</h3>
           </Link>
         ))}
       </div>
