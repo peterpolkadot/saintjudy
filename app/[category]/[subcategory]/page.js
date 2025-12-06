@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import NoJokesYet from "@/components/NoJokesYet";
+import Link from "next/link";
 import "../../styles.css";
 
 export async function generateMetadata({ params }) {
@@ -35,13 +36,8 @@ export default async function SubcategoryPage({ params }) {
   const config = await getSiteConfig();
   const navigation = await getNavigation();
 
-  // Parent category details (emoji + display name)
   const parent = await getCategory(parentSlug);
-
-  // Subcategory list for navigation
   const subcategories = await getSubcategories(parentSlug);
-
-  // Jokes for this specific subcategory
   const jokes = await getJokesForSubcategory(subSlug);
 
   const currentSub = subcategories.find(s => s.subcategory_slug === subSlug);
@@ -63,6 +59,7 @@ export default async function SubcategoryPage({ params }) {
         <section className="jokes-section">
           <div className="container">
 
+            {/* RANDOM JOKE GENERATOR */}
             {jokes.length > 0 ? (
               <RandomJokeGenerator 
                 jokes={jokes} 
@@ -72,17 +69,29 @@ export default async function SubcategoryPage({ params }) {
               <NoJokesYet name={currentSub?.subcategory_name || readableSlug(subSlug)} />
             )}
 
-            {/* Subcategory selector list */}
-            <div className="subcategory-list">
-              {subcategories.map((s) => (
-                <a
-                  key={s.subcategory_slug}
-                  href={`/${parentSlug}/${s.subcategory_slug}`}
-                  className={s.subcategory_slug === subSlug ? "active" : ""}
-                >
-                  {s.emoji} {s.subcategory_name}
-                </a>
-              ))}
+            {/* SUBCATEGORY CARDS (STYLED LIKE PARENT PAGE) */}
+            <div className="subcategories-section">
+              <h2 className="section-title">More {readableSlug(parentSlug)} Categories</h2>
+
+              <div className="categories-grid">
+                {subcategories.map((sub) => (
+                  <Link
+                    key={sub.subcategory_slug}
+                    href={`/${parentSlug}/${sub.subcategory_slug}`}
+                    className="category-card"
+                  >
+                    {sub.emoji && (
+                      <div className="category-emoji">{sub.emoji}</div>
+                    )}
+                    <h3>{sub.subcategory_name}</h3>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* HOME BUTTON */}
+            <div className="home-button-container">
+              <Link href="/" className="home-button">🏠 Back to Home</Link>
             </div>
 
           </div>
