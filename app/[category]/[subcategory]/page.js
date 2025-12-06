@@ -1,106 +1,56 @@
 
-import {
-  getSiteConfig,
-  getNavigation,
-  getCategory,
-  getSubcategories,
-  getJokesForSubcategory,
-  getParentCategories,
-  readableSlug,
-  getPageSEO
+import { 
+  getCategory, 
+  getSubcategories, 
+  getJokesForSubcategory, 
+  readableSlug 
 } from "@/lib/getSiteData";
 
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import StyleSwitcher from "@/components/StyleSwitcher";
-import RandomJokeGenerator from "@/components/RandomJokeGenerator";
-import RelatedCategories from "@/components/RelatedCategories";
-
-import "../../styles.css";
-
-/* -------------------------------------------------------------
-   SEO
-------------------------------------------------------------- */
-export async function generateMetadata({ params }) {
-  const { subcategory } = params;
-  const readable = readableSlug(subcategory);
-
-  const seo = await getPageSEO(subcategory);
-
-  return {
-    title: seo?.meta_title || `${readable} | Judy's Jokes`,
-    description: seo?.meta_description || `Jokes for ${readable}`,
-    keywords: seo?.keywords?.split(",") || []
-  };
-}
-
-/* -------------------------------------------------------------
-   RENDER SUBCATEGORY PAGE
-------------------------------------------------------------- */
 export default async function SubcategoryPage({ params }) {
-  const { category, subcategory } = params;
+  const parentSlug = params.category;
+  const subcategorySlug = params.subcategory;
 
-  const config = await getSiteConfig();
-  const navigation = await getNavigation();
+  // Load parent category
+  const parent = await getCategory(parentSlug);
 
-  // Get the CATEGORY record that matches this subcategory_slug
-  const categoryData = await getCategory(subcategory);
+  // Load subcategories for sidebar navigation
+  const subcategories = await getSubcategories(parentSlug);
 
-  // Get the ACTUAL jokes for this subcategory
-  const jokes = await getJokesForSubcategory(subcategory);
-
-  // For sidebar/related section
-  const parentCats = await getParentCategories();
-  const randomCategories = parentCats.sort(() => Math.random() - 0.5).slice(0, 3);
-
-  // If no category row exists, show 404
-  if (!categoryData) {
-    return (
-      <>
-        <Navigation config={config} links={navigation} />
-        <StyleSwitcher />
-        <main>
-          <section className="hero hero-small">
-            <div className="hero-content">
-              <h1 className="hero-title">Subcategory Not Found</h1>
-              <p className="hero-subtitle">Sorry, that page doesn't exist.</p>
-            </div>
-          </section>
-        </main>
-        <Footer config={config} />
-      </>
-    );
-  }
-
-  const heroStyle = categoryData.image_url ? { backgroundImage: `url(${categoryData.image_url})` } : {};
-  const heroClass = categoryData.image_url ? "hero hero-small hero-with-bg" : "hero hero-small";
+  // Load jokes FOR THIS subcategory
+  const jokes = await getJokesForSubcategory(subcategorySlug);
 
   return (
-    <>
-      <Navigation config={config} links={navigation} />
-      <StyleSwitcher />
+    <div className="page-container">
+      <h1 className="page-title">
+        {parent?.emoji} {readableSlug(subcategorySlug)}
+      </h1>
 
-      <main>
-        <section className={heroClass} style={heroStyle}>
-          <div className="hero-content">
-            <h1 className="hero-title">
-              {categoryData.emoji} {categoryData.category_name}
-            </h1>
+      {/* Subcategory selector */}
+      <div className="subcategory-list">
+        {subcategories.map((s) => (
+          <a
+            key={s.subcategory_slug}
+            href={"/"+parentSlug+"/"+s.subcategory_slug}
+            className={s.subcategory_slug === subcategorySlug ? "active" : ""}
+          >
+            {s.emoji} {s.subcategory_name}
+          </a>
+        ))}
+      </div>
+
+      {/* Joke List */}
+      <div className="joke-list">
+        {jokes.length === 0 && (
+          <p>No jokes found in this category yet!</p>
+        )}
+
+        {jokes.map((j, i) => (
+          <div key={i} className="joke-card">
+            <h3>{j.emoji} {j.setup}</h3>
+            <p>{j.punchline}</p>
           </div>
-        </section>
-
-        <section className="jokes-section">
-          <div className="container">
-            <RandomJokeGenerator
-              jokes={jokes}
-              categoryName={categoryData.category_name}
-            />
-            <RelatedCategories categories={randomCategories} />
-          </div>
-        </section>
-      </main>
-
-      <Footer config={config} />
-    </>
+        ))}
+      </div>
+    </div>
   );
 }
