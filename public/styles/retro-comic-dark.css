@@ -629,4 +629,32 @@
   .style-switcher-menu {
     min-width: 200px;
   }
+
+.jokes-list-section {
+  margin-top: 50px;
+  padding: 25px;
+  background: #fffbe6;
+  border: 4px solid #000;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 #000;
+}
+
+.comic-shadow {
+  box-shadow: 4px 4px 0 #000;
+}
+
+.comic-button {
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+}
+
+
+
+
+
+
+
+
+
+
 }
