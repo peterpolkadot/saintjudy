@@ -17,6 +17,7 @@ import SubcategoryCards from "@/components/SubcategoryCards";
 import RelatedCategories from "@/components/RelatedCategories";
 import NoSubcategories from "@/components/NoSubcategories";
 import NoJokesYet from "@/components/NoJokesYet";
+import JokesList from "@/components/JokesList";
 import "../styles.css";
 
 export async function generateMetadata({ params }) {
@@ -40,7 +41,6 @@ export default async function CategoryPage({ params }) {
   const jokes = await getAllJokesForParent(category);
   const allParents = await getParentCategories();
 
-  // pick 3 other random categories
   const related = allParents
     .filter(cat => cat.category_slug !== category)
     .sort(() => Math.random() - 0.5)
@@ -87,12 +87,17 @@ export default async function CategoryPage({ params }) {
         <section className="jokes-section">
           <div className="container">
 
+            {/* RANDOM JOKE GENERATOR */}
             {jokes.length > 0 ? (
               <RandomJokeGenerator jokes={jokes} categoryName={categoryData.category_name} />
             ) : (
               <NoJokesYet name={categoryData.category_name} />
             )}
 
+            {/* ⭐ FULL JOKE LIST HERE ⭐ */}
+            {jokes.length > 0 && <JokesList jokes={jokes} />}
+
+            {/* SUBCATEGORY CARDS */}
             {subcategories.length > 0 ? (
               <SubcategoryCards subcategories={subcategories} parentSlug={category} />
             ) : (
