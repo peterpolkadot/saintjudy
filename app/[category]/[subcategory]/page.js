@@ -13,6 +13,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
+import JokesList from "@/components/JokesList";
 import NoJokesYet from "@/components/NoJokesYet";
 import Link from "next/link";
 import "../../styles.css";
@@ -69,8 +70,11 @@ export default async function SubcategoryPage({ params }) {
               <NoJokesYet name={currentSub?.subcategory_name || readableSlug(subSlug)} />
             )}
 
-            {/* SUBCATEGORY CARDS (STYLED LIKE PARENT PAGE) */}
-            <div className="subcategories-section">
+            {/* ⭐ FULL JOKE LIST (Option A — directly under generator) */}
+            {jokes.length > 0 && <JokesList jokes={jokes} />}
+
+            {/* SUBCATEGORY CARDS */}
+            <div className="subcategories-section mt-14">
               <h2 className="section-title">More {readableSlug(parentSlug)} Categories</h2>
 
               <div className="categories-grid">
