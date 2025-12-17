@@ -23,7 +23,6 @@ export default async function CategoriesPage() {
   return (
     <>
       <Navigation config={config} links={navigation} />
-      <StyleSwitcher />
       
       <main>
         <section className="hero hero-small">

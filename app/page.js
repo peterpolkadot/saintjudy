@@ -22,7 +22,6 @@ export default async function HomePage() {
   return (
     <>
       <Navigation config={config} links={navigation} />
-      <StyleSwitcher />
       
       <main>
         <section className="hero">

@@ -49,7 +49,6 @@ export default async function CategoryPage({ params }) {
     return (
       <>
         <Navigation config={config} links={navigation} />
-        <StyleSwitcher />
         <main>
           <section className="hero hero-small">
             <div className="hero-content">
@@ -74,7 +73,6 @@ export default async function CategoryPage({ params }) {
   return (
     <>
       <Navigation config={config} links={navigation} />
-      <StyleSwitcher />
 
       <main>
         <section className={heroClass} style={heroStyle}>

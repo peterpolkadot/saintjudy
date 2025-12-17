@@ -45,7 +45,6 @@ export default async function SubcategoryPage({ params }) {
   return (
     <>
       <Navigation config={config} links={navigation} />
-      <StyleSwitcher />
 
       <main>
         <section className="hero hero-small">
