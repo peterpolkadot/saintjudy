@@ -11,7 +11,6 @@ import {
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import StyleSwitcher from "@/components/StyleSwitcher";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import JokesList from "@/components/JokesList";
 import NoJokesYet from "@/components/NoJokesYet";

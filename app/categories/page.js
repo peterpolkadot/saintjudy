@@ -2,7 +2,6 @@
 import { getSiteConfig, getNavigation, getParentCategories, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import StyleSwitcher from "@/components/StyleSwitcher";
 import Link from "next/link";
 
 
