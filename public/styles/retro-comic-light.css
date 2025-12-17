@@ -203,12 +203,14 @@ main { width: 100%; }
 
 /* Individual joke rows */
 .joke-item {
-  border: 3px solid #000;
   background: #fefefe;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 4px 4px 0 #000;
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.75rem;
+  position: relative;
 }
+
 
 .joke-item:last-child {
   margin-bottom: 0;
@@ -246,6 +248,12 @@ main { width: 100%; }
   text-decoration: none;
   text-align: center;
 }
+.joke-emoji {
+  font-size: 1.4rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
 
 .generate-btn:hover,
 .reveal-btn:hover,
@@ -254,6 +262,44 @@ main { width: 100%; }
 .home-button:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 #000;
+}
+.joke-content {
+  padding-left: 2.25rem; /* makes room for emoji badge */
+}
+.joke-item .reveal-btn {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background: #ffe600;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+.joke-punchline {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #fff0a8;
+  border-left: 5px solid #000;
+  font-weight: bold;
+}
+.jokes-section {
+  padding-top: 2rem;
+}
+
+.jokes-list .section-title {
+  margin-bottom: 2rem;
+}
+
+.joke-item .reveal-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.joke-question {
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
 }
 
 /* =========================

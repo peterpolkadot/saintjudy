@@ -10,6 +10,23 @@ body {
   background: #222;
   border-color: #fff;
 }
+.joke-item {
+  background: #1e1e1e;
+  border-color: #fff;
+  box-shadow: 6px 6px 0 #fff;
+}
+
+.joke-punchline {
+  background: #2a2a2a;
+  border-left-color: #fff;
+}
+
+.joke-item .reveal-btn {
+  background: #ffe600;
+  color: #000;
+  border-color: #fff;
+  box-shadow: 3px 3px 0 #fff;
+}
 
 .nav-logo,
 .nav-links a {
