@@ -24,12 +24,13 @@ body {
   text-shadow: 2px 2px 0 #000;
 }
 
-/* CARDS */
+/* CARDS + CONTAINERS */
 .category-card,
 .related-card,
 .joke-generator,
 .joke-card-big,
-.jokes-list {
+.jokes-list,
+.joke-item {
   background: #1e1e1e;
   color: #fff;
   border-color: #fff;
@@ -43,6 +44,7 @@ body {
 
 /* BUTTONS (STAY PINK) */
 .generate-btn,
+.reveal-btn,
 .reveal-btn-big,
 .another-btn,
 .home-button {
