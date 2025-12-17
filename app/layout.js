@@ -1,5 +1,6 @@
 
 import "./globals.css";
+import "../public/styles/retro-comic-light.css";
 
 export const metadata = {
   title: "Judy's Jokes",
@@ -9,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
