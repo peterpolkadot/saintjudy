@@ -3,7 +3,6 @@ import { getSiteConfig, getNavigation, getParentCategories, getPageSEO } from "@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import StyleSwitcher from "@/components/StyleSwitcher";
-import "./styles.css";
 import Link from "next/link";
 
 export async function generateMetadata() {

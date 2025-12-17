@@ -18,7 +18,7 @@ import RelatedCategories from "@/components/RelatedCategories";
 import NoSubcategories from "@/components/NoSubcategories";
 import NoJokesYet from "@/components/NoJokesYet";
 import JokesList from "@/components/JokesList";
-import "../styles.css";
+
 
 export async function generateMetadata({ params }) {
   const { category } = params;

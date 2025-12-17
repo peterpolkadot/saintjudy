@@ -16,7 +16,7 @@ import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import JokesList from "@/components/JokesList";
 import NoJokesYet from "@/components/NoJokesYet";
 import Link from "next/link";
-import "../../styles.css";
+
 
 export async function generateMetadata({ params }) {
   const { category, subcategory } = params;
