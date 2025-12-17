@@ -1,30 +1,148 @@
 
+/* ---------- RESET ---------- */
+* { box-sizing: border-box; }
 body {
-  background: #FFE600;
+  margin: 0;
+  font-family: "Comic Sans MS", "Arial Rounded MT Bold", system-ui;
+  background: #00a6e6;
   color: #000;
-  font-family: Impact, sans-serif;
 }
 
+/* ---------- LAYOUT ---------- */
+main {
+  width: 100%;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.categories-section,
+.jokes-section {
+  padding: 3rem 0;
+}
+
+/* ---------- NAV ---------- */
 .nav {
-  background: #FFE600;
+  background: #ffe600;
   border-bottom: 5px solid #000;
 }
 
-.category-card,
-.joke-card-big,
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-links a {
+  margin-left: 1.25rem;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  background: #0099cc;
+  border-bottom: 5px solid #000;
+}
+
+.hero-small {
+  padding: 2rem 0;
+}
+
+.hero-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin: 0;
+  text-shadow: 4px 4px 0 #ff0080;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+}
+
+/* ---------- TITLES ---------- */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  text-shadow: 2px 2px 0 #ffe600;
+}
+
+/* ---------- GRIDS ---------- */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- CARDS ---------- */
+.category-card {
+  background: #fff;
+  border: 4px solid #000;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 6px 6px 0 #000;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.category-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 #000;
+}
+
+.category-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- JOKES ---------- */
 .jokes-list {
-  background: white;
-  border: 5px solid #000;
+  margin-top: 3rem;
+}
+
+.joke-generator,
+.joke-card-big,
+.joke-generator-start {
+  background: #fff;
+  border: 4px solid #000;
+  padding: 2rem;
   box-shadow: 6px 6px 0 #000;
 }
 
-.generate-btn,
-.home-button {
-  background: #FFE600;
-  border: 5px solid #000;
+/* ---------- BUTTONS ---------- */
+button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
+/* ---------- FOOTER ---------- */
 .footer {
-  background: #000;
-  color: #FFE600;
+  background: #ffe600;
+  border-top: 5px solid #000;
+}
+
+.footer .container {
+  text-align: center;
+  font-weight: bold;
 }

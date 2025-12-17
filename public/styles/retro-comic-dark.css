@@ -1,30 +1,24 @@
 
 body {
-  background: #000;
-  color: #FFE600;
-  font-family: Impact, sans-serif;
+  background: #111;
+  color: #fff;
 }
 
-.nav {
-  background: #000;
-  border-bottom: 5px solid #FFE600;
+.nav,
+.footer {
+  background: #222;
+  border-color: #fff;
 }
 
 .category-card,
 .joke-card-big,
-.jokes-list {
-  background: #1A1A1A;
-  border: 5px solid #FFE600;
-  box-shadow: 6px 6px 0 #FFE600;
+.joke-generator-start {
+  background: #1e1e1e;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 6px 6px 0 #fff;
 }
 
-.generate-btn,
-.home-button {
-  background: #FFE600;
-  color: #000;
-}
-
-.footer {
-  background: #FFE600;
-  color: #000;
+.hero {
+  background: #333;
 }
