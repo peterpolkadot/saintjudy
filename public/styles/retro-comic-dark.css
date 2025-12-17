@@ -9,6 +9,11 @@ body {
   background: #222;
   border-color: #fff;
 }
+.style-switcher-menu {
+  background: #1e1e1e;
+  color: #fff;
+  border-color: #fff;
+}
 
 .category-card,
 .joke-card-big,
@@ -22,3 +27,33 @@ body {
 .hero {
   background: #333;
 }
+/* ---------- TITLES ---------- */
+.section-title {
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* ---------- CARDS ---------- */
+.category-card {
+  background: #1e1e1e;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 6px 6px 0 #fff;
+}
+
+.category-card:hover {
+  box-shadow: 10px 10px 0 #fff;
+}
+
+/* ---------- JOKE BLOCKS ---------- */
+.joke-generator,
+.joke-card-big,
+.joke-generator-start {
+  background: #1e1e1e;
+  border-color: #fff;
+}
+
+
+
+
+
+
