@@ -12,7 +12,7 @@ body {
 }
 
 /* =========================
-   LAYOUT (SHARED)
+   LAYOUT
 ========================= */
 main { width: 100%; }
 
@@ -28,7 +28,7 @@ main { width: 100%; }
 }
 
 /* =========================
-   STYLE SWITCHER (SHARED)
+   STYLE SWITCHER
 ========================= */
 .style-switcher {
   position: fixed;
@@ -52,10 +52,9 @@ main { width: 100%; }
 }
 
 /* =========================
-   NAV (STRUCTURE SHARED)
+   NAV
 ========================= */
 .nav {
-  width: 100%;
   background: #ffe600;
   border-bottom: 5px solid #000;
 }
@@ -124,7 +123,7 @@ main { width: 100%; }
 }
 
 /* =========================
-   GRIDS (SHARED)
+   GRIDS
 ========================= */
 .categories-grid,
 .related-grid {
@@ -134,7 +133,7 @@ main { width: 100%; }
 }
 
 /* =========================
-   CARDS (SHARED)
+   CARDS (USED EVERYWHERE)
 ========================= */
 .category-card,
 .related-card {
@@ -161,25 +160,71 @@ main { width: 100%; }
 }
 
 /* =========================
-   JOKES
+   RANDOM JOKE GENERATOR
 ========================= */
-.jokes-list { margin-top: 3rem; }
+.joke-generator {
+  background: #ffe600;
+  border: 5px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 2rem;
+}
 
-.joke-generator,
-.joke-card-big,
-.joke-generator-start {
+.joke-card-big {
   background: #fff;
   border: 4px solid #000;
-  padding: 2rem;
   box-shadow: 6px 6px 0 #000;
+  padding: 2rem;
+  text-align: center;
+}
+
+.joke-setup-big {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* =========================
-   BUTTONS
+   JOKES LIST (CATEGORY PAGE)
 ========================= */
-button {
-  font-family: inherit;
+.jokes-list {
+  background: #fff;
+  border: 5px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.jokes-list .section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* =========================
+   COMIC BUTTONS
+========================= */
+.generate-btn,
+.reveal-btn-big,
+.another-btn,
+.home-button {
+  display: block;
+  margin: 1.25rem auto 0;
+  padding: 0.75rem 1.75rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: #ff5aa5;
+  color: #000;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.generate-btn:hover,
+.reveal-btn-big:hover,
+.another-btn:hover,
+.home-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
 }
 
 /* =========================

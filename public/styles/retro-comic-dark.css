@@ -4,7 +4,7 @@ body {
   color: #fff;
 }
 
-/* NAV */
+/* NAV + FOOTER */
 .nav,
 .footer {
   background: #222;
@@ -14,13 +14,6 @@ body {
 .nav-logo,
 .nav-links a {
   color: #fff;
-}
-
-/* STYLE SWITCHER */
-.style-switcher-menu {
-  background: #1e1e1e;
-  color: #fff;
-  border-color: #fff;
 }
 
 /* HERO */
@@ -36,7 +29,7 @@ body {
 .related-card,
 .joke-generator,
 .joke-card-big,
-.joke-generator-start {
+.jokes-list {
   background: #1e1e1e;
   color: #fff;
   border-color: #fff;
@@ -46,4 +39,22 @@ body {
 .category-card:hover,
 .related-card:hover {
   box-shadow: 10px 10px 0 #fff;
+}
+
+/* BUTTONS (STAY PINK) */
+.generate-btn,
+.reveal-btn-big,
+.another-btn,
+.home-button {
+  background: #ff5aa5;
+  color: #000;
+  border-color: #fff;
+  box-shadow: 4px 4px 0 #fff;
+}
+
+/* STYLE SWITCHER */
+.style-switcher-menu {
+  background: #1e1e1e;
+  color: #fff;
+  border-color: #fff;
 }
