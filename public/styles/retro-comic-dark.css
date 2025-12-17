@@ -1,28 +1,30 @@
 
-:root {
-  --bg-main: #000;
-  --bg-accent: #1A1A1A;
-  --bg-card: #1A1A1A;
-  --text-main: #FFE600;
-  --accent: #FF0080;
+body {
+  background: #000;
+  color: #FFE600;
+  font-family: Impact, sans-serif;
 }
 
-.nav { background: var(--bg-main); border-bottom: 5px solid var(--text-main); }
-.nav-logo { color: var(--text-main); text-shadow: 3px 3px 0 var(--accent); }
-
-.hero { background: var(--bg-accent); color: var(--text-main); border-bottom: 5px solid var(--text-main); }
-.hero-title { color: var(--text-main); text-shadow: 4px 4px 0 var(--accent), 8px 8px 0 #000; }
+.nav {
+  background: #000;
+  border-bottom: 5px solid #FFE600;
+}
 
 .category-card,
-.related-card,
 .joke-card-big,
 .jokes-list {
-  background: var(--bg-card);
-  border: 5px solid var(--text-main);
-  box-shadow: 6px 6px 0 var(--text-main);
+  background: #1A1A1A;
+  border: 5px solid #FFE600;
+  box-shadow: 6px 6px 0 #FFE600;
+}
+
+.generate-btn,
+.home-button {
+  background: #FFE600;
+  color: #000;
 }
 
 .footer {
-  background: var(--text-main);
+  background: #FFE600;
   color: #000;
 }
