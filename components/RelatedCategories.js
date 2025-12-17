@@ -10,7 +10,7 @@ export default function RelatedCategories({ categories }) {
           <Link 
             key={cat.category_slug} 
             href={`/${cat.category_slug}`} 
-            className="related-card"
+            className="category-card"
           >
             <div className="related-emoji">{cat.emoji}</div>
             <h3>{cat.category_name}</h3>
