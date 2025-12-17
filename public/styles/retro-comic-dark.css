@@ -4,56 +4,46 @@ body {
   color: #fff;
 }
 
+/* NAV */
 .nav,
 .footer {
   background: #222;
   border-color: #fff;
 }
+
+.nav-logo,
+.nav-links a {
+  color: #fff;
+}
+
+/* STYLE SWITCHER */
 .style-switcher-menu {
   background: #1e1e1e;
   color: #fff;
   border-color: #fff;
 }
 
-.category-card,
-.joke-card-big,
-.joke-generator-start {
-  background: #1e1e1e;
-  color: #fff;
-  border-color: #fff;
-  box-shadow: 6px 6px 0 #fff;
-}
+/* HERO */
+.hero { background: #333; }
 
-.hero {
-  background: #333;
-}
-/* ---------- TITLES ---------- */
+/* TITLES */
 .section-title {
   text-shadow: 2px 2px 0 #000;
 }
 
-/* ---------- CARDS ---------- */
-.category-card {
+/* CARDS */
+.category-card,
+.related-card,
+.joke-generator,
+.joke-card-big,
+.joke-generator-start {
   background: #1e1e1e;
   color: #fff;
   border-color: #fff;
   box-shadow: 6px 6px 0 #fff;
 }
 
-.category-card:hover {
+.category-card:hover,
+.related-card:hover {
   box-shadow: 10px 10px 0 #fff;
 }
-
-/* ---------- JOKE BLOCKS ---------- */
-.joke-generator,
-.joke-card-big,
-.joke-generator-start {
-  background: #1e1e1e;
-  border-color: #fff;
-}
-
-
-
-
-
-

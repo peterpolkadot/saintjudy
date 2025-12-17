@@ -1,6 +1,9 @@
 
-/* ---------- RESET ---------- */
+/* =========================
+   RESET
+========================= */
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: "Comic Sans MS", "Arial Rounded MT Bold", system-ui;
@@ -8,10 +11,10 @@ body {
   color: #000;
 }
 
-/* ---------- LAYOUT ---------- */
-main {
-  width: 100%;
-}
+/* =========================
+   LAYOUT (SHARED)
+========================= */
+main { width: 100%; }
 
 .container {
   max-width: 1100px;
@@ -23,7 +26,10 @@ main {
 .jokes-section {
   padding: 3rem 0;
 }
-/* ---------- STYLE SWITCHER ---------- */
+
+/* =========================
+   STYLE SWITCHER (SHARED)
+========================= */
 .style-switcher {
   position: fixed;
   bottom: 1.25rem;
@@ -36,6 +42,7 @@ main {
   border: 4px solid #000;
   box-shadow: 4px 4px 0 #000;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .style-switcher-menu {
@@ -44,8 +51,11 @@ main {
   box-shadow: 6px 6px 0 #000;
 }
 
-/* ---------- NAV ---------- */
+/* =========================
+   NAV (STRUCTURE SHARED)
+========================= */
 .nav {
+  width: 100%;
   background: #ffe600;
   border-bottom: 5px solid #000;
 }
@@ -53,7 +63,7 @@ main {
 .nav-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,22 +76,26 @@ main {
   text-decoration: none;
 }
 
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
 .nav-links a {
-  margin-left: 1.25rem;
   font-weight: bold;
   color: #000;
   text-decoration: none;
 }
 
-/* ---------- HERO ---------- */
+/* =========================
+   HERO
+========================= */
 .hero {
   background: #0099cc;
   border-bottom: 5px solid #000;
 }
 
-.hero-small {
-  padding: 2rem 0;
-}
+.hero-small { padding: 2rem 0; }
 
 .hero-content {
   max-width: 1100px;
@@ -100,22 +114,30 @@ main {
   margin-top: 0.75rem;
 }
 
-/* ---------- TITLES ---------- */
+/* =========================
+   TITLES
+========================= */
 .section-title {
   font-size: 2rem;
   margin-bottom: 1.25rem;
   text-shadow: 2px 2px 0 #ffe600;
 }
 
-/* ---------- GRIDS ---------- */
-.categories-grid {
+/* =========================
+   GRIDS (SHARED)
+========================= */
+.categories-grid,
+.related-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
-/* ---------- CARDS ---------- */
-.category-card {
+/* =========================
+   CARDS (SHARED)
+========================= */
+.category-card,
+.related-card {
   background: #fff;
   border: 4px solid #000;
   padding: 1.5rem;
@@ -126,20 +148,22 @@ main {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.category-card:hover {
+.category-card:hover,
+.related-card:hover {
   transform: translate(-4px, -4px);
   box-shadow: 10px 10px 0 #000;
 }
 
-.category-emoji {
+.category-emoji,
+.related-emoji {
   font-size: 3rem;
   margin-bottom: 0.5rem;
 }
 
-/* ---------- JOKES ---------- */
-.jokes-list {
-  margin-top: 3rem;
-}
+/* =========================
+   JOKES
+========================= */
+.jokes-list { margin-top: 3rem; }
 
 .joke-generator,
 .joke-card-big,
@@ -150,13 +174,17 @@ main {
   box-shadow: 6px 6px 0 #000;
 }
 
-/* ---------- BUTTONS ---------- */
+/* =========================
+   BUTTONS
+========================= */
 button {
   font-family: inherit;
   cursor: pointer;
 }
 
-/* ---------- FOOTER ---------- */
+/* =========================
+   FOOTER
+========================= */
 .footer {
   background: #ffe600;
   border-top: 5px solid #000;
