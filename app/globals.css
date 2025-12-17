@@ -1,22 +1,88 @@
 
+/* =========================================================
+   SAINT JUDY — GLOBAL FOUNDATION
+   Layout, spacing, structure ONLY
+   (Themes live in STYLES.gs)
+========================================================= */
+
 * {
   box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+/* ---------- TYPOGRAPHY NORMALISATION ---------- */
+h1, h2, h3, h4 {
+  margin: 0 0 0.75rem 0;
 }
 
-body {
-  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
-  background: #FFF8E7;
-  color: #333;
-  line-height: 1.6;
+p {
+  margin: 0.5rem 0;
+  line-height: 1.55;
 }
 
+/* ---------- LAYOUT ---------- */
+main {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1.25rem;
+}
+
+/* ---------- BUTTON BASE ---------- */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 3px solid #000;
+  padding: 0.6rem 1.1rem;
+  font-weight: bold;
+}
+
+/* ---------- LINKS ---------- */
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* ---------- JOKE GENERATOR ---------- */
+.joke-generator {
+  margin-bottom: 3rem;
+}
+
+.joke-generator-start,
+.joke-card-big {
+  text-align: center;
+}
+
+.joke-setup-big {
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.joke-punchline-big {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* ---------- JOKE LIST ---------- */
+.jokes-list {
+  margin-top: 3rem;
+}
+
+.jokes-list > div {
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- GRIDS ---------- */
+.categories-grid {
+  margin-top: 2rem;
 }
