@@ -10,22 +10,19 @@ export default function JokesList({ jokes }) {
 
         return (
           <div key={i} className="joke-item">
-            <div className="joke-emoji">{j.emoji}</div>
+            <p className="joke-question">
+              <span className="inline-emoji">{j.emoji}</span>
+              {j.setup}
+            </p>
 
-            <div className="joke-content">
-              <p className="joke-question">{j.setup}</p>
+            {show && <p className="joke-punchline">{j.punchline}</p>}
 
-              {show && (
-                <p className="joke-punchline">{j.punchline}</p>
-              )}
-
-              <button
-                className="reveal-btn"
-                onClick={() => setShow(!show)}
-              >
-                {show ? "Hide punchline" : "Reveal punchline"}
-              </button>
-            </div>
+            <button
+              className="reveal-btn"
+              onClick={() => setShow(!show)}
+            >
+              {show ? "Hide punchline" : "Reveal punchline"}
+            </button>
           </div>
         );
       })}

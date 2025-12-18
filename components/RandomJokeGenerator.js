@@ -3,25 +3,25 @@
 import { useState } from "react";
 
 export default function RandomJokeGenerator({ jokes }) {
-  const [joke, setJoke] = useState(null);
+  const [joke, setJoke] = useState(
+    jokes[Math.floor(Math.random() * jokes.length)]
+  );
 
   return (
     <div className="joke-generator">
-      <button
-        className="reveal-btn"
-        onClick={() =>
-          setJoke(jokes[Math.floor(Math.random() * jokes.length)])
-        }
-      >
-        Tell me a joke 😄
-      </button>
+      <div className="joke-card-big">
+        <p className="joke-question">{joke.setup}</p>
+        <p className="joke-punchline">{joke.punchline}</p>
 
-      {joke && (
-        <div className="joke-card-big">
-          <p className="joke-question">{joke.setup}</p>
-          <p className="joke-punchline">{joke.punchline}</p>
-        </div>
-      )}
+        <button
+          className="pink-btn"
+          onClick={() =>
+            setJoke(jokes[Math.floor(Math.random() * jokes.length)])
+          }
+        >
+          🔄 Another Joke!
+        </button>
+      </div>
     </div>
   );
 }

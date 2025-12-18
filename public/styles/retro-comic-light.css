@@ -140,6 +140,15 @@ body {
   border-left: 5px solid #000;
   font-weight: bold;
 }
+.inline-emoji {
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+.joke-question {
+  font-size: 1.15rem;
+  font-weight: 900;
+}
 
 .reveal-btn {
   margin-top: 1rem;
