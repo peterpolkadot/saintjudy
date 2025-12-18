@@ -39,14 +39,7 @@ export default async function CategoryPage({ params }) {
     <>
       <Navigation config={config} links={navigation} />
 
-      {/* HERO (MATCH HOME PAGE) */}
-      <section className="hero hero-small">
-        <div className="hero-content container">
-          <h1 className="hero-title">
-            {category.emoji} {category.category_name}
-          </h1>
-        </div>
-      </section>
+
 
      <main className="container">
   <JokesList jokes={jokes} />
