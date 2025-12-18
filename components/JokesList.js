@@ -6,9 +6,10 @@ export default function JokesList({ jokes }) {
   return (
     <section className="jokes-section">
 
-      <h2 className="section-title">
-        😂 All Jokes in This Category
-      </h2>
+     <div className="section-card">
+  <h2>{category?.category_name} Jokes for Kids</h2>
+</div>
+
 
       <div className="jokes-list">
         {jokes.map((j, i) => {
