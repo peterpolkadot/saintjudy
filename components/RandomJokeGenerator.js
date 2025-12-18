@@ -5,15 +5,15 @@ import { useState } from "react";
 export default function RandomJokeGenerator({ jokes }) {
   const [joke, setJoke] = useState(null);
 
-  function pickRandom() {
-    const j = jokes[Math.floor(Math.random() * jokes.length)];
-    setJoke(j);
-  }
-
   return (
     <div className="joke-generator">
-      <button className="reveal-btn" onClick={pickRandom}>
-        🎲 Random Joke
+      <button
+        className="reveal-btn"
+        onClick={() =>
+          setJoke(jokes[Math.floor(Math.random() * jokes.length)])
+        }
+      >
+        Tell me a joke 😄
       </button>
 
       {joke && (
