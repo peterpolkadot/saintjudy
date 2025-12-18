@@ -33,30 +33,25 @@ export default async function CategoryPage({ params }) {
 
   if (!category) return null;
 
-  const related = allCategories.filter(
-    c => c.category_slug !== categorySlug
-  ).slice(0, 3);
+  const related = allCategories.filter(c => c.category_slug !== categorySlug).slice(0, 3);
 
   return (
     <>
       <Navigation config={config} links={navigation} />
 
+      {/* HERO (MATCH HOME PAGE) */}
+      <section className="hero hero-small">
+        <div className="hero-content container">
+          <h1 className="hero-title">
+            {category.emoji} {category.category_name}
+          </h1>
+        </div>
+      </section>
+
       <main className="container">
-
-        <section className="hero hero-small">
-          <div className="hero-content">
-            <h1 className="hero-title">
-              {category.emoji} {category.category_name}
-            </h1>
-          </div>
-        </section>
-
         {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} />}
-
         <JokesList jokes={jokes} />
-
         <RelatedCategories categories={related} />
-
       </main>
 
       <Footer />
