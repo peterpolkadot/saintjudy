@@ -116,6 +116,13 @@ body {
   font-weight: 900;
   margin-bottom: 0.75rem;
 }
+/* CATEGORIES GRID (RESTORED) */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
 
 .joke-punchline {
   margin-top: 1rem;
