@@ -1,120 +1,49 @@
 
-import { 
-  getSiteConfig, 
-  getNavigation, 
-  getCategory, 
-  getSubcategories, 
-  getAllJokesForParent, 
-  getParentCategories, 
-  getPageSEO 
+import {
+  getSiteConfig,
+  getNavigation,
+  getCategory,
+  getJokesByCategory,
+  getCategories,
+  getPageSEO
 } from "@/lib/getSiteData";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import StructuredData from "@/components/StructuredData";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
-import SubcategoryCards from "@/components/SubcategoryCards";
-import RelatedCategories from "@/components/RelatedCategories";
-import NoSubcategories from "@/components/NoSubcategories";
-import NoJokesYet from "@/components/NoJokesYet";
 import JokesList from "@/components/JokesList";
-
+import RelatedCategories from "@/components/RelatedCategories";
 
 export async function generateMetadata({ params }) {
-  const { category } = params;
-  const seo = await getPageSEO(category);
-
+  const seo = await getPageSEO(params.category);
   return {
-    title: seo?.meta_title || `${category} | Judy's Jokes`,
-    description: seo?.meta_description || "Funny jokes for kids",
-    keywords: seo?.keywords?.split(",") || [],
+    title: seo?.meta_title || "Jokes",
+    description: seo?.meta_description || "Funny jokes for kids"
   };
 }
 
 export default async function CategoryPage({ params }) {
-  const { category } = params;
+  const categorySlug = params.category;
 
   const config = await getSiteConfig();
   const navigation = await getNavigation();
-  const categoryData = await getCategory(category);
-  const subcategories = await getSubcategories(category);
-  const jokes = await getAllJokesForParent(category);
-  const allParents = await getParentCategories();
+  const category = await getCategory(categorySlug);
+  const jokes = await getJokesByCategory(categorySlug);
+  const allCategories = await getCategories();
 
-  const related = allParents
-    .filter(cat => cat.category_slug !== category)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+  if (!category) return null;
 
-  if (!categoryData) {
-    return (
-      <>
-        <Navigation config={config} links={navigation} />
-        <main>
-          <section className="hero hero-small">
-            <div className="hero-content">
-              <h1 className="hero-title">Category Not Found</h1>
-              <p className="hero-subtitle">Oops! That category doesn't exist.</p>
-            </div>
-          </section>
-        </main>
-        <Footer config={config} />
-      </>
-    );
-  }
-
-  const heroStyle = categoryData.image_url 
-    ? { backgroundImage: `url(${categoryData.image_url})` }
-    : {};
-
-  const heroClass = categoryData.image_url
-    ? "hero hero-small hero-with-bg"
-    : "hero hero-small";
-
-  // Minimal structured data - just collection
-  const collectionData = {
-    name: `${categoryData.category_name} Jokes`,
-    description: `Funny ${categoryData.category_name} jokes for kids`,
-    url: `https://saintjudy.vercel.app/${category}`,
-    numberOfJokes: jokes.length,
-    jokes: jokes.slice(0, 10)
-  };
+  const related = allCategories.filter(c => c.category_slug !== categorySlug).slice(0, 3);
 
   return (
     <>
-      <StructuredData type="collectionPage" data={collectionData} />
-      
       <Navigation config={config} links={navigation} />
-
-      <main>
-        <section className={heroClass} style={heroStyle}>
-          <div className="hero-content">
-            <h1 className="hero-title">{categoryData.emoji} {categoryData.category_name}</h1>
-          </div>
-        </section>
-
-        <section className="jokes-section">
-          <div className="container">
-
-            {jokes.length > 0 ? (
-              <RandomJokeGenerator jokes={jokes} categoryName={categoryData.category_name} />
-            ) : (
-              <NoJokesYet name={categoryData.category_name} />
-            )}
-
-            {jokes.length > 0 && <JokesList jokes={jokes} />}
-
-            {subcategories.length > 0 ? (
-              <SubcategoryCards subcategories={subcategories} parentSlug={category} />
-            ) : (
-              <NoSubcategories name={categoryData.category_name} />
-            )}
-
-            <RelatedCategories categories={related} />
-          </div>
-        </section>
+      <main className="container">
+        <h1>{category.emoji} {category.category_name}</h1>
+        {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} />}
+        <JokesList jokes={jokes} />
+        <RelatedCategories categories={related} />
       </main>
-
       <Footer config={config} />
     </>
   );
