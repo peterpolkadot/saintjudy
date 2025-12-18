@@ -4,7 +4,9 @@ import Link from "next/link";
 export default function RelatedCategories({ categories }) {
   return (
     <section>
-      <h2 className="section-title">Try another one</h2>
+    <div className="section-card">
+  <h2>Try Another Category</h2>
+</div>
 
       <div className="categories-grid">
         {categories.map(c => (
