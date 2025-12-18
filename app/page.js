@@ -1,25 +1,17 @@
 
-import { getSiteConfig, getNavigation, getCategories, getPageSEO } from "@/lib/getSiteData";
+import { getSiteConfig, getNavigation, getCategories } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
-export async function generateMetadata() {
-  const seo = await getPageSEO("home");
-  return {
-    title: seo?.meta_title || "Judy's Jokes",
-    description: seo?.meta_description || "Clean jokes for kids"
-  };
-}
-
 export default async function HomePage() {
   const config = await getSiteConfig();
-  const navigation = await getNavigation();
+  const nav = await getNavigation();
   const categories = await getCategories();
 
   return (
     <>
-      <Navigation config={config} links={navigation} />
+      <Navigation config={config} links={nav} />
       <main className="container">
         <h1>😂 Judy's Jokes for Kids 😂</h1>
         <div className="categories-grid">
@@ -31,7 +23,7 @@ export default async function HomePage() {
           ))}
         </div>
       </main>
-      <Footer config={config} />
+      <Footer />
     </>
   );
 }

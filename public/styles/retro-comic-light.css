@@ -1,59 +1,11 @@
 
-/* =========================
-   RESET
-========================= */
-* { box-sizing: border-box; }
-
 body {
-  margin: 0;
   font-family: "Comic Sans MS", "Arial Rounded MT Bold", system-ui;
   background: #00a6e6;
   color: #000;
 }
 
-/* =========================
-   LAYOUT (STRUCTURAL)
-========================= */
-main { width: 100%; }
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem;
-}
-
-.categories-section,
-.jokes-section {
-  padding: 2.5rem 0;
-}
-
-/* =========================
-   STYLE SWITCHER
-========================= */
-.style-switcher {
-  position: fixed;
-  bottom: 1.25rem;
-  right: 1.25rem;
-  z-index: 9999;
-}
-
-.style-switcher-button {
-  background: #ffe600;
-  border: 4px solid #000;
-  box-shadow: 4px 4px 0 #000;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.style-switcher-menu {
-  background: #fff;
-  border: 4px solid #000;
-  box-shadow: 6px 6px 0 #000;
-}
-
-/* =========================
-   NAV
-========================= */
+/* NAV */
 .nav {
   background: #ffe600;
   border-bottom: 5px solid #000;
@@ -71,24 +23,9 @@ main { width: 100%; }
 .nav-logo {
   font-size: 2rem;
   font-weight: 900;
-  color: #000;
-  text-decoration: none;
 }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-}
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero {
   background: #0099cc;
   border-bottom: 5px solid #000;
@@ -99,78 +36,42 @@ main { width: 100%; }
 }
 
 .hero-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem;
   text-align: center;
 }
 
 .hero-title {
   display: inline-block;
-  font-size: 2.5rem;
-  margin: 0;
-  padding: 0.75rem 1.5rem;
   background: #ffe600;
   border: 4px solid #000;
   box-shadow: 6px 6px 0 #000;
-  text-shadow: 3px 3px 0 #ff0080;
+  padding: 0.75rem 1.5rem;
+  font-size: 2.5rem;
 }
 
-/* =========================
-   TITLES
-========================= */
+/* TITLES */
 .section-title {
-  font-size: 2rem;
-  margin-bottom: 1.75rem;
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
   text-shadow: 2px 2px 0 #ffe600;
 }
 
-/* =========================
-   GRIDS
-========================= */
-.categories-grid,
-.related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-/* =========================
-   CARDS (GLOBAL)
-========================= */
-.category-card,
-.related-card {
+/* CARDS */
+.category-card {
   background: #fff;
   border: 4px solid #000;
+  box-shadow: 6px 6px 0 #000;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 6px 6px 0 #000;
-  text-decoration: none;
-  color: #000;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.category-card:hover,
-.related-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0 #000;
-}
-
-.category-emoji,
-.related-emoji {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-/* =========================
-   RANDOM JOKE GENERATOR
-========================= */
+/* RANDOM JOKE GENERATOR */
 .joke-generator {
   background: #ffe600;
   border: 5px solid #000;
   box-shadow: 8px 8px 0 #000;
   padding: 2rem;
+  margin-bottom: 3rem;
 }
 
 .joke-card-big {
@@ -181,14 +82,7 @@ main { width: 100%; }
   text-align: center;
 }
 
-.joke-setup-big {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-/* =========================
-   JOKES LIST (CATEGORY)
-========================= */
+/* JOKES LIST */
 .jokes-list {
   background: #fff;
   border: 5px solid #000;
@@ -197,84 +91,32 @@ main { width: 100%; }
   margin-top: 3rem;
 }
 
-.jokes-list .section-title {
-  margin-bottom: 2rem;
-}
-
-/* Individual joke rows */
 .joke-item {
+  position: relative;
   background: #fefefe;
   border: 4px solid #000;
   box-shadow: 6px 6px 0 #000;
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 1.75rem;
-  position: relative;
-}
-
-
-.joke-item:last-child {
-  margin-bottom: 0;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .joke-emoji {
-  font-size: 1.25rem;
-  margin-right: 0.5rem;
-}
-
-.joke-question {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 0.75rem;
-}
-
-/* =========================
-   COMIC BUTTONS
-========================= */
-.generate-btn,
-.reveal-btn,
-.reveal-btn-big,
-.another-btn,
-.home-button {
-  display: block;
-  margin: 1.25rem auto 0;
-  padding: 0.75rem 1.75rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background: #ff5aa5;
-  color: #000;
-  border: 4px solid #000;
-  box-shadow: 4px 4px 0 #000;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-}
-.joke-emoji {
-  font-size: 1.4rem;
   position: absolute;
   top: 1rem;
   left: 1rem;
+  font-size: 1.5rem;
 }
 
-.generate-btn:hover,
-.reveal-btn:hover,
-.reveal-btn-big:hover,
-.another-btn:hover,
-.home-button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 #000;
-}
 .joke-content {
-  padding-left: 2.25rem; /* makes room for emoji badge */
+  padding-left: 2.5rem;
 }
-.joke-item .reveal-btn {
-  margin-top: 0.75rem;
-  padding: 0.5rem 1.25rem;
-  background: #ffe600;
-  border: 3px solid #000;
-  box-shadow: 3px 3px 0 #000;
-  font-weight: bold;
-  cursor: pointer;
+
+.joke-question {
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
 }
+
 .joke-punchline {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
@@ -282,29 +124,17 @@ main { width: 100%; }
   border-left: 5px solid #000;
   font-weight: bold;
 }
-.jokes-section {
-  padding-top: 2rem;
+
+.reveal-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: #ffe600;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  font-weight: bold;
 }
 
-.jokes-list .section-title {
-  margin-bottom: 2rem;
-}
-
-.joke-item .reveal-btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #000;
-}
-
-.joke-question {
-  font-size: 1.15rem;
-  font-weight: 900;
-  margin-bottom: 0.75rem;
-  line-height: 1.35;
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 .footer {
   background: #ffe600;
   border-top: 5px solid #000;

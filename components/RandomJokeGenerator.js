@@ -4,11 +4,16 @@ import { useState } from "react";
 export default function RandomJokeGenerator({ jokes }) {
   const [joke,setJoke] = useState(null);
   return (
-    <div>
+    <div className="joke-generator">
       <button onClick={()=>setJoke(jokes[Math.floor(Math.random()*jokes.length)])}>
-        Random Joke
+        🎲 Random Joke
       </button>
-      {joke && <p>{joke.setup} — {joke.punchline}</p>}
+      {joke && (
+        <div className="joke-card-big">
+          <p>{joke.setup}</p>
+          <p>{joke.punchline}</p>
+        </div>
+      )}
     </div>
   );
 }
