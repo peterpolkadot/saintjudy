@@ -73,6 +73,21 @@ body {
   padding: 2rem;
   margin-bottom: 3rem;
 }
+/* CATEGORIES GRID */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+.category-card > div {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+.category-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 #000;
+}
 
 .joke-card-big {
   background: #fff;
@@ -116,13 +131,7 @@ body {
   font-weight: 900;
   margin-bottom: 0.75rem;
 }
-/* CATEGORIES GRID (RESTORED) */
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
+
 
 .joke-punchline {
   margin-top: 1rem;
