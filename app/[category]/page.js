@@ -50,7 +50,7 @@ export default async function CategoryPage({ params }) {
 
       <main className="container">
         {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} />}
-        <JokesList jokes={jokes} />
+        <JokesList jokes={jokes} category={category} />
         <RelatedCategories categories={related} />
       </main>
 

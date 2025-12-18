@@ -2,7 +2,7 @@
 "use client";
 import { useState } from "react";
 
-export default function JokesList({ jokes }) {
+export default function JokesList({ jokes, category }) {
   return (
     <section className="jokes-section">
 
