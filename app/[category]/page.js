@@ -48,11 +48,11 @@ export default async function CategoryPage({ params }) {
         </div>
       </section>
 
-      <main className="container">
-        {jokes.length > 0 && <RandomJokeGenerator jokes={jokes} />}
-        <JokesList jokes={jokes} category={category} />
-        <RelatedCategories categories={related} />
-      </main>
+     <main className="container">
+  <JokesList jokes={jokes} />
+  <RelatedCategories categories={related} />
+</main>
+
 
       <Footer />
     </>
