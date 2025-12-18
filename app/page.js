@@ -38,7 +38,7 @@ export default async function HomePage() {
           {categories.map(c => (
             
               key={c.category_slug}
-              href={`/${c.category_slug}`}
+              href={'/' + c.category_slug}
               className="category-card"
             >
               <div>{c.emoji}</div>
