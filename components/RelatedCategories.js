@@ -18,6 +18,11 @@ export default function RelatedCategories({ categories }) {
           </Link>
         ))}
       </div>
+<div style={{ textAlign: "center", margin: "3rem" }}>
+  <a href="/" className="pink-btn">🏠 Back to Home</a>
+</div>
+
+
     </section>
   );
 }
