@@ -8,6 +8,7 @@ import {
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export async function generateMetadata() {
   const seo = await getPageSEO("home");
@@ -34,16 +35,17 @@ export default async function HomePage() {
 
       <main className="container">
         <h2 className="section-title">Pick a joke category</h2>
+
         <div className="categories-grid">
           {categories.map(c => (
-            
+            <Link
               key={c.category_slug}
               href={`/${c.category_slug}`}
               className="category-card"
             >
               <div>{c.emoji}</div>
               <h3>{c.category_name}</h3>
-            </a>
+            </Link>
           ))}
         </div>
       </main>
