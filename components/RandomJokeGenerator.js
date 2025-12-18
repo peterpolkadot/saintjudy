@@ -2,13 +2,13 @@
 "use client";
 import { useState } from "react";
 
-export default function RandomJokeGenerator({ jokes }) {
+export default function RandomJokeGenerator({ jokes, category }) {
   const [joke, setJoke] = useState(null);
-  const [show, setShow] = useState(false);
+  const [showPunchline, setShowPunchline] = useState(false);
 
-  function newJoke() {
+  function nextJoke() {
     setJoke(jokes[Math.floor(Math.random() * jokes.length)]);
-    setShow(false);
+    setShowPunchline(false);
   }
 
   return (
@@ -16,30 +16,41 @@ export default function RandomJokeGenerator({ jokes }) {
       <div className="joke-card-big">
 
         {!joke && (
-          <button className="pink-btn" onClick={newJoke}>
-            🎲 Tell me a joke
+          <button
+            className="pink-btn big-joke-btn"
+            onClick={nextJoke}
+          >
+            😂 Tell me a {category} joke!
           </button>
         )}
 
         {joke && (
           <>
-            <p className="joke-question">{joke.setup}</p>
+            <p className="joke-question">
+              <span className="inline-emoji">{joke.emoji}</span>
+              {joke.setup}
+            </p>
 
-            {show && (
+            {showPunchline && (
               <p className="joke-punchline">{joke.punchline}</p>
             )}
 
-            <div style={{ marginTop: "1.5rem" }}>
-              {!show && (
-                <button
-                  className="reveal-btn"
-                  onClick={() => setShow(true)}
-                >
-                  👀 Show Punchline
-                </button>
-              )}
+            {/* 🔥 FORCE VERTICAL STACK */}
+            <div
+              className="joke-buttons"
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
+              <button
+                className="reveal-btn"
+                onClick={() => setShowPunchline(!showPunchline)}
+              >
+                {showPunchline ? "Hide punchline" : "Show punchline"}
+              </button>
 
-              <button className="pink-btn" onClick={newJoke}>
+              <button
+                className="pink-btn"
+                onClick={nextJoke}
+              >
                 🔄 Another Joke!
               </button>
             </div>
