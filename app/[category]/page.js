@@ -23,12 +23,11 @@ import JokesList from "@/components/JokesList";
 export async function generateMetadata({ params }) {
   const { category } = params;
   const seo = await getPageSEO(category);
-  const categoryData = await getCategory(category);
 
   return {
-    title: seo?.meta_title || `${categoryData?.category_name || category} Jokes | Judy's Jokes`,
-    description: seo?.meta_description || `Funny ${categoryData?.category_name || category} jokes for kids`,
-    keywords: seo?.keywords?.split(",") || [`${category} jokes`, "kids jokes", "funny jokes"],
+    title: seo?.meta_title || `${category} | Judy's Jokes`,
+    description: seo?.meta_description || "Funny jokes for kids",
+    keywords: seo?.keywords?.split(",") || [],
   };
 }
 
@@ -72,25 +71,17 @@ export default async function CategoryPage({ params }) {
     ? "hero hero-small hero-with-bg"
     : "hero hero-small";
 
-  // Structured Data
-  const breadcrumbData = {
-    items: [
-      { name: "Home", url: "https://saintjudy.vercel.app" },
-      { name: categoryData.category_name, url: `https://saintjudy.vercel.app/${category}` }
-    ]
-  };
-
+  // Minimal structured data - just collection
   const collectionData = {
     name: `${categoryData.category_name} Jokes`,
     description: `Funny ${categoryData.category_name} jokes for kids`,
     url: `https://saintjudy.vercel.app/${category}`,
     numberOfJokes: jokes.length,
-    jokes: jokes.slice(0, 20) // First 20 for structured data
+    jokes: jokes.slice(0, 10)
   };
 
   return (
     <>
-      <StructuredData type="breadcrumb" data={breadcrumbData} />
       <StructuredData type="collectionPage" data={collectionData} />
       
       <Navigation config={config} links={navigation} />
@@ -105,17 +96,14 @@ export default async function CategoryPage({ params }) {
         <section className="jokes-section">
           <div className="container">
 
-            {/* RANDOM JOKE GENERATOR */}
             {jokes.length > 0 ? (
               <RandomJokeGenerator jokes={jokes} categoryName={categoryData.category_name} />
             ) : (
               <NoJokesYet name={categoryData.category_name} />
             )}
 
-            {/* FULL JOKE LIST */}
             {jokes.length > 0 && <JokesList jokes={jokes} />}
 
-            {/* SUBCATEGORY CARDS */}
             {subcategories.length > 0 ? (
               <SubcategoryCards subcategories={subcategories} parentSlug={category} />
             ) : (

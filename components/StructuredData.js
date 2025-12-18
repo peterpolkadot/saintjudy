@@ -8,43 +8,7 @@ export default function StructuredData({ type, data }) {
       "@type": "WebSite",
       "name": data.name,
       "url": data.url,
-      "description": data.description,
-      "publisher": {
-        "@type": "Organization",
-        "name": data.name
-      }
-    };
-  }
-
-  if (type === "joke") {
-    schema = {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "text": data.setup + " " + data.punchline,
-      "genre": "Joke",
-      "audience": {
-        "@type": "PeopleAudience",
-        "suggestedMinAge": 5,
-        "suggestedMaxAge": 12
-      },
-      "inLanguage": "en-US",
-      "about": {
-        "@type": "Thing",
-        "name": data.category
-      }
-    };
-  }
-
-  if (type === "breadcrumb") {
-    schema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": data.items.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.url
-      }))
+      "description": data.description
     };
   }
 

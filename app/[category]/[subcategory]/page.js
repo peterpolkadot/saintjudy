@@ -25,8 +25,8 @@ export async function generateMetadata({ params }) {
 
   return {
     title: seo?.meta_title || `${readableSlug(subcategory)} Jokes`,
-    description: seo?.meta_description || `Funny ${readableSlug(subcategory)} jokes from this category`,
-    keywords: seo?.keywords?.split(",") || [`${subcategory} jokes`, "kids jokes", "funny jokes"],
+    description: seo?.meta_description || "Funny jokes from this category",
+    keywords: seo?.keywords?.split(",") || [],
   };
 }
 
@@ -43,26 +43,17 @@ export default async function SubcategoryPage({ params }) {
 
   const currentSub = subcategories.find(s => s.subcategory_slug === subSlug);
 
-  // Structured Data
-  const breadcrumbData = {
-    items: [
-      { name: "Home", url: "https://saintjudy.vercel.app" },
-      { name: parent?.category_name || readableSlug(parentSlug), url: `https://saintjudy.vercel.app/${parentSlug}` },
-      { name: currentSub?.subcategory_name || readableSlug(subSlug), url: `https://saintjudy.vercel.app/${parentSlug}/${subSlug}` }
-    ]
-  };
-
+  // Minimal structured data
   const collectionData = {
     name: `${currentSub?.subcategory_name || readableSlug(subSlug)} Jokes`,
     description: `Funny ${currentSub?.subcategory_name || readableSlug(subSlug)} jokes for kids`,
     url: `https://saintjudy.vercel.app/${parentSlug}/${subSlug}`,
     numberOfJokes: jokes.length,
-    jokes: jokes.slice(0, 20)
+    jokes: jokes.slice(0, 10)
   };
 
   return (
     <>
-      <StructuredData type="breadcrumb" data={breadcrumbData} />
       <StructuredData type="collectionPage" data={collectionData} />
       
       <Navigation config={config} links={navigation} />
@@ -79,7 +70,6 @@ export default async function SubcategoryPage({ params }) {
         <section className="jokes-section">
           <div className="container">
 
-            {/* RANDOM JOKE GENERATOR */}
             {jokes.length > 0 ? (
               <RandomJokeGenerator 
                 jokes={jokes} 
@@ -89,10 +79,8 @@ export default async function SubcategoryPage({ params }) {
               <NoJokesYet name={currentSub?.subcategory_name || readableSlug(subSlug)} />
             )}
 
-            {/* FULL JOKE LIST */}
             {jokes.length > 0 && <JokesList jokes={jokes} />}
 
-            {/* SUBCATEGORY CARDS */}
             <div className="subcategories-section mt-14">
               <h2 className="section-title">More {readableSlug(parentSlug)} Categories</h2>
 
@@ -112,7 +100,6 @@ export default async function SubcategoryPage({ params }) {
               </div>
             </div>
 
-            {/* HOME BUTTON */}
             <div className="home-button-container">
               <Link href="/" className="home-button">🏠 Back to Home</Link>
             </div>

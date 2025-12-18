@@ -23,22 +23,15 @@ Add environment variables:
 
 ## SEO Features
 
-### Structured Data (Schema.org)
-- ✅ Website schema on all pages
-- ✅ Breadcrumb navigation schema
-- ✅ CollectionPage schema for joke categories
-- ✅ CreativeWork schema for individual jokes
-- ✅ Audience targeting (ages 5-12)
+### Structured Data (Lean Implementation)
+- ✅ Website schema in layout
+- ✅ CollectionPage schema on category/subcategory pages (first 10 jokes)
+- ✅ Individual jokes marked as CreativeWork
 
 ### Meta Tags
 - Dynamic titles per page
-- Optimized descriptions
+- Optimized descriptions  
 - Keywords from database
 
-## Testing SEO
-
-Test structured data with:
-- Google Rich Results Test: https://search.google.com/test/rich-results
-- Schema.org Validator: https://validator.schema.org/
-
-View source on any page to see JSON-LD structured data in <head>.
+## Test SEO
+https://search.google.com/test/rich-results
