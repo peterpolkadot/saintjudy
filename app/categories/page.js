@@ -2,6 +2,7 @@
 import { getSiteConfig, getNavigation, getParentCategories, getPageSEO } from "@/lib/getSiteData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import StructuredData from "@/components/StructuredData";
 import Link from "next/link";
 
 
@@ -9,9 +10,9 @@ export async function generateMetadata() {
   const seo = await getPageSEO("categories");
   
   return {
-    title: seo?.meta_title || "Categories | Judy's Jokes",
-    description: seo?.meta_description || "Browse joke categories",
-    keywords: seo?.keywords?.split(",") || [],
+    title: seo?.meta_title || "All Joke Categories | Judy's Jokes",
+    description: seo?.meta_description || "Browse all joke categories for kids",
+    keywords: seo?.keywords?.split(",") || ["joke categories", "kids jokes", "funny jokes"],
   };
 }
 
@@ -20,8 +21,17 @@ export default async function CategoriesPage() {
   const navigation = await getNavigation();
   const categories = await getParentCategories();
 
+  const breadcrumbData = {
+    items: [
+      { name: "Home", url: "https://saintjudy.vercel.app" },
+      { name: "Categories", url: "https://saintjudy.vercel.app/categories" }
+    ]
+  };
+
   return (
     <>
+      <StructuredData type="breadcrumb" data={breadcrumbData} />
+      
       <Navigation config={config} links={navigation} />
       
       <main>

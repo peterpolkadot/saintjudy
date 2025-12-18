@@ -21,6 +21,24 @@ Add environment variables:
 - /[category] (parent category page with subcategory cards)
 - /[category]/[subcategory] (child category page with jokes only)
 
-## Style Switcher
+## SEO Features
 
-Click the 🎨 button to switch between light/dark retro comic themes!
+### Structured Data (Schema.org)
+- ✅ Website schema on all pages
+- ✅ Breadcrumb navigation schema
+- ✅ CollectionPage schema for joke categories
+- ✅ CreativeWork schema for individual jokes
+- ✅ Audience targeting (ages 5-12)
+
+### Meta Tags
+- Dynamic titles per page
+- Optimized descriptions
+- Keywords from database
+
+## Testing SEO
+
+Test structured data with:
+- Google Rich Results Test: https://search.google.com/test/rich-results
+- Schema.org Validator: https://validator.schema.org/
+
+View source on any page to see JSON-LD structured data in <head>.

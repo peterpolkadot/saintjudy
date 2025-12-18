@@ -1,11 +1,9 @@
 
 export default function NoJokesYet({ name }) {
   return (
-    <div className="no-jokes-yet">
-      <h2 className="section-title">No Jokes Yet</h2>
-      <p className="section-subtitle">
-        We haven’t added jokes to <strong>{name}</strong> yet — check back soon!
-      </p>
+    <div className="no-jokes">
+      <h2>No {name} Jokes Yet</h2>
+      <p>Check back soon — we're always adding more!</p>
     </div>
   );
 }

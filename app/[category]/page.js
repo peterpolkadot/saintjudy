@@ -11,6 +11,7 @@ import {
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import StructuredData from "@/components/StructuredData";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import SubcategoryCards from "@/components/SubcategoryCards";
 import RelatedCategories from "@/components/RelatedCategories";
@@ -22,11 +23,12 @@ import JokesList from "@/components/JokesList";
 export async function generateMetadata({ params }) {
   const { category } = params;
   const seo = await getPageSEO(category);
+  const categoryData = await getCategory(category);
 
   return {
-    title: seo?.meta_title || `${category} | Judy's Jokes`,
-    description: seo?.meta_description || "Funny jokes for kids",
-    keywords: seo?.keywords?.split(",") || [],
+    title: seo?.meta_title || `${categoryData?.category_name || category} Jokes | Judy's Jokes`,
+    description: seo?.meta_description || `Funny ${categoryData?.category_name || category} jokes for kids`,
+    keywords: seo?.keywords?.split(",") || [`${category} jokes`, "kids jokes", "funny jokes"],
   };
 }
 
@@ -53,7 +55,7 @@ export default async function CategoryPage({ params }) {
           <section className="hero hero-small">
             <div className="hero-content">
               <h1 className="hero-title">Category Not Found</h1>
-              <p className="hero-subtitle">Oops! That category doesn’t exist.</p>
+              <p className="hero-subtitle">Oops! That category doesn't exist.</p>
             </div>
           </section>
         </main>
@@ -70,8 +72,27 @@ export default async function CategoryPage({ params }) {
     ? "hero hero-small hero-with-bg"
     : "hero hero-small";
 
+  // Structured Data
+  const breadcrumbData = {
+    items: [
+      { name: "Home", url: "https://saintjudy.vercel.app" },
+      { name: categoryData.category_name, url: `https://saintjudy.vercel.app/${category}` }
+    ]
+  };
+
+  const collectionData = {
+    name: `${categoryData.category_name} Jokes`,
+    description: `Funny ${categoryData.category_name} jokes for kids`,
+    url: `https://saintjudy.vercel.app/${category}`,
+    numberOfJokes: jokes.length,
+    jokes: jokes.slice(0, 20) // First 20 for structured data
+  };
+
   return (
     <>
+      <StructuredData type="breadcrumb" data={breadcrumbData} />
+      <StructuredData type="collectionPage" data={collectionData} />
+      
       <Navigation config={config} links={navigation} />
 
       <main>
@@ -91,7 +112,7 @@ export default async function CategoryPage({ params }) {
               <NoJokesYet name={categoryData.category_name} />
             )}
 
-            {/* ⭐ FULL JOKE LIST HERE ⭐ */}
+            {/* FULL JOKE LIST */}
             {jokes.length > 0 && <JokesList jokes={jokes} />}
 
             {/* SUBCATEGORY CARDS */}
