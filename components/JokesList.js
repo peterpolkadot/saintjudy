@@ -4,28 +4,40 @@ import { useState } from "react";
 
 export default function JokesList({ jokes }) {
   return (
-    <div className="jokes-list">
-      {jokes.map((j, i) => {
-        const [show, setShow] = useState(false);
+    <section className="jokes-section">
 
-        return (
-          <div key={i} className="joke-item">
-            <p className="joke-question">
-              <span className="inline-emoji">{j.emoji}</span>
-              {j.setup}
-            </p>
+      <h2 className="section-title">
+        😂 All Jokes in This Category
+      </h2>
 
-            {show && <p className="joke-punchline">{j.punchline}</p>}
+      <div className="jokes-list">
+        {jokes.map((j, i) => {
+          const [show, setShow] = useState(false);
 
-            <button
-              className="reveal-btn"
-              onClick={() => setShow(!show)}
-            >
-              {show ? "Hide punchline" : "Reveal punchline"}
-            </button>
-          </div>
-        );
-      })}
-    </div>
+          return (
+            <div key={i} className="joke-item">
+
+              <p className="joke-question">
+                <span className="inline-emoji">{j.emoji}</span>
+                {j.setup}
+              </p>
+
+              {show && (
+                <p className="joke-punchline">{j.punchline}</p>
+              )}
+
+              <button
+                className="reveal-btn"
+                onClick={() => setShow(!show)}
+              >
+                {show ? "Hide punchline" : "Reveal punchline"}
+              </button>
+
+            </div>
+          );
+        })}
+      </div>
+
+    </section>
   );
 }
