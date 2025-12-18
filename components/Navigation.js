@@ -1,12 +1,19 @@
 
 import Link from "next/link";
+
 export default function Navigation({ config, links }) {
   return (
     <nav className="nav">
       <div className="nav-container">
-        <Link href="/" className="nav-logo">{config?.logo_text}</Link>
+        <Link href="/" className="nav-logo">
+          {config?.logo_text}
+        </Link>
         <div>
-          {links.map((l,i) => <Link key={i} href={l.link}>{l.label}</Link>)}
+          {links.map((l, i) => (
+            <Link key={i} href={l.link}>
+              {l.label}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
