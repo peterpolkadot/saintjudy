@@ -3,11 +3,13 @@ import {
   getSiteConfig,
   getNavigation,
   getCategories,
+  getAllJokes,
   getPageSEO
 } from "@/lib/getSiteData";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import Link from "next/link";
 
 export async function generateMetadata() {
@@ -22,6 +24,7 @@ export default async function HomePage() {
   const config = await getSiteConfig();
   const navigation = await getNavigation();
   const categories = await getCategories();
+  const allJokes = await getAllJokes();
 
   return (
     <>
@@ -34,6 +37,8 @@ export default async function HomePage() {
       </section>
 
       <main className="container">
+        <RandomJokeGenerator jokes={allJokes} category="random" />
+
         <h2 className="section-title">Pick a joke category</h2>
 
         <div className="categories-grid">
