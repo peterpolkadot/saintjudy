@@ -40,21 +40,25 @@ export default function RandomJokeGenerator({ jokes, category }) {
               className="joke-buttons"
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
-              <button
-                className="reveal-btn"
-                onClick={() => setShowPunchline(!showPunchline)}
-                style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
-              >
-                {showPunchline ? "Hide punchline" : "Show punchline"}
-              </button>
+              {!showPunchline && (
+                <button
+                  className="reveal-btn"
+                  onClick={() => setShowPunchline(true)}
+                  style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
+                >
+                  Show punchline
+                </button>
+              )}
 
-              <button
-                className="pink-btn"
-                onClick={nextJoke}
-                style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
-              >
-                🔄 Another Joke!
-              </button>
+              {showPunchline && (
+                <button
+                  className="pink-btn"
+                  onClick={nextJoke}
+                  style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
+                >
+                  🔄 Another Joke!
+                </button>
+              )}
             </div>
           </>
         )}
