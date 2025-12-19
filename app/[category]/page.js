@@ -10,7 +10,6 @@ import {
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import JokesList from "@/components/JokesList";
 import RelatedCategories from "@/components/RelatedCategories";
 
@@ -39,20 +38,19 @@ export default async function CategoryPage({ params }) {
     <>
       <Navigation config={config} links={navigation} />
 
-      {/* HERO (MATCH HOME PAGE) */}
+      {/* HERO */}
       <section className="hero">
         <div className="hero-content container">
           <h1 className="hero-title">
-            {category.emoji} {category.category_name}
+            {category.emoji} {category.category_name} Jokes for Kids
           </h1>
         </div>
       </section>
 
-     <main className="container">
-  <JokesList jokes={jokes} />
-  <RelatedCategories categories={related} />
-</main>
-
+      <main className="container">
+        <JokesList jokes={jokes} />
+        <RelatedCategories categories={related} />
+      </main>
 
       <Footer />
     </>
