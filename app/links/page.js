@@ -58,9 +58,7 @@ export default async function LinksPage() {
       </section>
 
       <main className="container">
-        <div className="section-card">
-          <h2>Check out these awesome websites!</h2>
-        </div>
+      
 
         <div className="categories-grid">
           {kidsSites.map((site, i) => (
