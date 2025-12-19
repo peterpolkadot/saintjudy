@@ -6,11 +6,7 @@ export default function JokesList({ jokes, category }) {
   return (
     <section className="jokes-section">
 
-     <div className="section-card">
-  <h2>{category?.category_name} Jokes for Kids</h2>
-</div>
-
-
+     
       <div className="jokes-list">
         {jokes.map((j, i) => {
           const [show, setShow] = useState(false);
