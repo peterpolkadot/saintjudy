@@ -20,22 +20,21 @@ export default function RandomJokeGenerator({ jokes, category }) {
             className="pink-btn big-joke-btn"
             onClick={nextJoke}
           >
-            😂 Tell me a {category} joke!
+            😂 Tell me a random joke!
           </button>
         )}
 
         {joke && (
           <>
-            <p className="joke-question">
-              <span className="inline-emoji">{joke.emoji}</span>
+            <p className="joke-question" style={{ fontSize: "2.3rem" }}>
+              <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{joke.emoji}</span>
               {joke.setup}
             </p>
 
             {showPunchline && (
-              <p className="joke-punchline">{joke.punchline}</p>
+              <p className="joke-punchline" style={{ fontSize: "2rem" }}>{joke.punchline}</p>
             )}
 
-            {/* 🔥 FORCE VERTICAL STACK */}
             <div
               className="joke-buttons"
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
