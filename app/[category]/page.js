@@ -5,6 +5,7 @@ import {
   getCategory,
   getJokesByCategory,
   getCategories,
+  getJokeVotes,
   getPageSEO
 } from "@/lib/getSiteData";
 
@@ -32,7 +33,9 @@ export default async function CategoryPage({ params }) {
 
   if (!category) return null;
 
-  // Filter out current category, shuffle, then take 3
+  const jokeIds = jokes.map(j => j.id);
+  const votes = await getJokeVotes(jokeIds);
+
   const filtered = allCategories.filter(c => c.category_slug !== categorySlug);
   const shuffled = filtered.sort(() => Math.random() - 0.5);
   const related = shuffled.slice(0, 3);
@@ -41,7 +44,6 @@ export default async function CategoryPage({ params }) {
     <>
       <Navigation config={config} links={navigation} />
 
-      {/* HERO */}
       <section className="hero">
         <div className="hero-content container">
           <h1 className="hero-title">
@@ -51,7 +53,7 @@ export default async function CategoryPage({ params }) {
       </section>
 
       <main className="container">
-        <JokesList jokes={jokes} />
+        <JokesList jokes={jokes} initialVotes={votes} />
         <RelatedCategories categories={related} />
       </main>
 
