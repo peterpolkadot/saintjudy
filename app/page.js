@@ -26,6 +26,13 @@ export default async function HomePage() {
   const categories = await getCategories();
   const allJokes = await getAllJokes();
 
+  const totalJokes = allJokes.length;
+  const lastUpdated = new Date().toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
   return (
     <>
       <Navigation config={config} links={navigation} />
@@ -33,6 +40,15 @@ export default async function HomePage() {
       <section className="hero">
         <div className="hero-content container">
           <h1 className="hero-title">😂 Judy's Jokes for Kids 😂</h1>
+          <p style={{ 
+            fontSize: "1.3rem", 
+            fontWeight: "600", 
+            marginTop: "1.5rem",
+            color: "#fff",
+            textShadow: "2px 2px 0 #000"
+          }}>
+            {totalJokes} kid-friendly jokes • Last updated by Judy {lastUpdated}
+          </p>
         </div>
       </section>
 
