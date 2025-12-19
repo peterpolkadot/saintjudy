@@ -19,6 +19,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
           <button
             className="pink-btn big-joke-btn"
             onClick={nextJoke}
+            style={{ fontSize: "2.3rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
           >
             😂 Tell me a random joke!
           </button>
@@ -26,7 +27,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
 
         {joke && (
           <>
-            <p className="joke-question" style={{ fontSize: "2.1rem" }}>
+            <p className="joke-question" style={{ fontSize: "2.3rem" }}>
               <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{joke.emoji}</span>
               {joke.setup}
             </p>
