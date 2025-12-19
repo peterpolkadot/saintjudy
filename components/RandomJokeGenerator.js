@@ -43,6 +43,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
               <button
                 className="reveal-btn"
                 onClick={() => setShowPunchline(!showPunchline)}
+                style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
               >
                 {showPunchline ? "Hide punchline" : "Show punchline"}
               </button>
@@ -50,6 +51,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
               <button
                 className="pink-btn"
                 onClick={nextJoke}
+                style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
               >
                 🔄 Another Joke!
               </button>
