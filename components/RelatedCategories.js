@@ -21,7 +21,7 @@ export default function RelatedCategories({ categories }) {
         ))}
       </div>
 <div style={{ textAlign: "center", margin: "3rem" }}>
-  <a href="/" className="pink-btn">🏠 Back to Home</a>
+  <a href="/" className="pink-btn">🏠 Judy's Jokes For Kids</a>
 </div>
 
 

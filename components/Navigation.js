@@ -8,7 +8,7 @@ export default function Navigation({ config, links }) {
         <Link href="/" className="nav-logo">
           {config?.logo_text}
         </Link>
-        <div>
+        <div className="nav-links">
           {links.map((l, i) => (
             <Link key={i} href={l.link}>
               {l.label}
