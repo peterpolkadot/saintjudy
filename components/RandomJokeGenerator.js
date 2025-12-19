@@ -26,7 +26,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
 
         {joke && (
           <>
-            <p className="joke-question" style={{ fontSize: "2.3rem" }}>
+            <p className="joke-question" style={{ fontSize: "2.1rem" }}>
               <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{joke.emoji}</span>
               {joke.setup}
             </p>
