@@ -32,7 +32,10 @@ export default async function CategoryPage({ params }) {
 
   if (!category) return null;
 
-  const related = allCategories.filter(c => c.category_slug !== categorySlug).slice(0, 3);
+  // Filter out current category, shuffle, then take 3
+  const filtered = allCategories.filter(c => c.category_slug !== categorySlug);
+  const shuffled = filtered.sort(() => Math.random() - 0.5);
+  const related = shuffled.slice(0, 3);
 
   return (
     <>
