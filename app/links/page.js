@@ -64,13 +64,7 @@ export default async function LinksPage() {
 
         <div className="categories-grid">
           {kidsSites.map((site, i) => (
-            
-              key={i}
-              href={site.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="category-card"
-            >
+            <a key={i} href={site.url} target="_blank" rel="noopener noreferrer" className="category-card">
               <div>{site.emoji}</div>
               <h3>{site.name}</h3>
               <p style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>
