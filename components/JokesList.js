@@ -53,21 +53,24 @@ export default function JokesList({ jokes, initialVotes }) {
 
           return (
             <div key={i} className="joke-item">
-              <p className="joke-question">
-                <span className="inline-emoji">{j.emoji}</span>
+              <p className="joke-question" style={{ fontSize: "2.3rem" }}>
+                <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{j.emoji}</span>
                 {j.setup}
               </p>
 
               {show && (
-                <p className="joke-punchline">{j.punchline}</p>
+                <p className="joke-punchline" style={{ fontSize: "2rem" }}>{j.punchline}</p>
               )}
 
-              <button
-                className="reveal-btn"
-                onClick={() => setShow(!show)}
-              >
-                {show ? "Hide punchline" : "Reveal punchline"}
-              </button>
+              {!show && (
+                <button
+                  className="reveal-btn"
+                  onClick={() => setShow(true)}
+                  style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
+                >
+                  Reveal punchline
+                </button>
+              )}
 
               <div style={{ marginTop: "1rem", display: "flex", gap: "1rem", alignItems: "center" }}>
                 <button
