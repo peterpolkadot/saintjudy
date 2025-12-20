@@ -41,7 +41,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
   return (
     <section style={{ marginTop: "4rem" }}>
       <div className="section-card">
-        <h2>🏆 Top 10 Funniest Jokes 🏆</h2>
+        <h2 style={{ fontSize: "2.5rem" }}>🏆 Top 10 Funniest Jokes 🏆</h2>
       </div>
 
       <div className="jokes-list">

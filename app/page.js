@@ -42,7 +42,7 @@ export default async function HomePage() {
 
       <section className="hero">
         <div className="hero-content container">
-          <h1 className="hero-title">😂 Judy's Jokes for Kids 😂</h1>
+          <h1 className="hero-title" style={{ background: "#ff5fa2" }}>😂 Judy's Jokes for Kids 😂</h1>
           <p style={{ 
             fontSize: "1.3rem", 
             fontWeight: "600", 
@@ -56,9 +56,9 @@ export default async function HomePage() {
       </section>
 
       <main className="container">
-        <RandomJokeGenerator jokes={allJokes} category="random" />
-
         <TopJokesLeaderboard initialJokes={topJokes} initialVotes={topVotes} />
+        
+        <RandomJokeGenerator jokes={allJokes} category="random" />
 
         <h2 className="section-title" style={{ marginTop: "4rem" }}>Pick a joke category</h2>
 
