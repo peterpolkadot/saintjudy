@@ -42,10 +42,10 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
     <section style={{ marginTop: "2rem" }}>
       <div className="section-card">
         <h2 style={{ 
-          fontSize: "2.5rem",
+          fontSize: "2.4rem",
           textShadow: "3px 3px 0 #fff, 3px 3px 0 #000"
         }}>
-          <span style={{ fontSize: "2rem" }}>🏆</span> Judy's Best Jokes
+          <span style={{ fontSize: "2.4rem" }}>🏆</span> Judy's Best Jokes
         </h2>
       </div>
 
@@ -65,7 +65,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                 bottom: "1rem",
                 left: "1rem",
                 fontSize: "3rem",
-                opacity: "0.3"
+                opacity: "0.6"
               }}>
                 {j.emoji}
               </span>
@@ -100,7 +100,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
 
               {/* JOKE CONTENT - RIGHT SIDE */}
               <div style={{ flex: 1 }}>
-                <p className="joke-question" style={{ fontSize: "2.3rem", margin: "0 0 1rem 0" }}>
+                <p className="joke-question" style={{ fontSize: "2.2rem", margin: "0 0 1rem 0" }}>
                   {j.setup}
                 </p>
 
