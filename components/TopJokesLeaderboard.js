@@ -39,12 +39,12 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
   }
 
   return (
-    <section style={{ marginTop: "4rem" }}>
+    <section style={{ marginTop: "2rem" }}>
       <div className="section-card">
-        <h2 style={{ fontSize: "2.5rem" }}>🏆 Top 10 Funniest Jokes 🏆</h2>
+        <h2 style={{ fontSize: "2.5rem" }}>🏆 Judy's Best Jokes 🏆</h2>
       </div>
 
-      <div className="jokes-list">
+      <div className="jokes-list" style={{ maxWidth: "900px", margin: "0 auto" }}>
         {initialJokes.map((j, i) => {
           const [show, setShow] = useState(false);
           const votes = voteCounts[j.id] || { up: 0, down: 0 };
@@ -52,84 +52,93 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
           const netScore = votes.up - votes.down;
 
           return (
-            <div key={i} className="joke-item" style={{ position: "relative" }}>
+            <div key={i} className="joke-item" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
+              
+              {/* RANK BADGE - LEFT SIDE */}
               <div style={{
-                position: "absolute",
-                top: "1rem",
-                right: "1rem",
-                background: "#ffe600",
-                border: "3px solid #000",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontWeight: "700",
-                fontSize: "1.5rem"
+                flexShrink: 0,
+                background: i < 3 ? "#FFD700" : "#ffe600",
+                border: "4px solid #000",
+                boxShadow: "4px 4px 0 #000",
+                borderRadius: "8px",
+                width: "80px",
+                padding: "1rem",
+                textAlign: "center"
               }}>
-                #{i + 1}
-              </div>
-
-              <p className="joke-question" style={{ fontSize: "2.3rem", paddingRight: "60px" }}>
-                <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{j.emoji}</span>
-                {j.setup}
-              </p>
-
-              {show && (
-                <p className="joke-punchline" style={{ fontSize: "2rem" }}>{j.punchline}</p>
-              )}
-
-              {!show && (
-                <button
-                  className="reveal-btn"
-                  onClick={() => setShow(true)}
-                  style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
-                >
-                  Reveal punchline
-                </button>
-              )}
-
-              <div style={{ marginTop: "1rem", display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
-                <button
-                  onClick={() => handleVote(j.id, 'up')}
-                  disabled={hasVoted}
-                  style={{
-                    padding: "0.5rem 1rem",
-                    background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
-                    border: "3px solid #000",
-                    boxShadow: "3px 3px 0 #000",
-                    fontWeight: "700",
-                    cursor: hasVoted ? "not-allowed" : "pointer",
-                    opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
-                  }}
-                >
-                  👍 {votes.up}
-                </button>
-                <button
-                  onClick={() => handleVote(j.id, 'down')}
-                  disabled={hasVoted}
-                  style={{
-                    padding: "0.5rem 1rem",
-                    background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
-                    border: "3px solid #000",
-                    boxShadow: "3px 3px 0 #000",
-                    fontWeight: "700",
-                    cursor: hasVoted ? "not-allowed" : "pointer",
-                    opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
-                  }}
-                >
-                  👎 {votes.down}
-                </button>
                 <div style={{
-                  padding: "0.5rem 1rem",
-                  background: netScore > 0 ? "#4CAF50" : netScore < 0 ? "#f44336" : "#ccc",
-                  border: "3px solid #000",
-                  fontWeight: "700"
+                  fontSize: "2.5rem",
+                  fontWeight: "700",
+                  lineHeight: "1"
                 }}>
-                  Score: {netScore > 0 ? '+' : ''}{netScore}
+                  #{i + 1}
+                </div>
+                <div style={{
+                  fontSize: "0.9rem",
+                  fontWeight: "700",
+                  marginTop: "0.5rem",
+                  color: netScore > 0 ? "#4CAF50" : netScore < 0 ? "#f44336" : "#666"
+                }}>
+                  {netScore > 0 ? '+' : ''}{netScore}
                 </div>
               </div>
+
+              {/* JOKE CONTENT - RIGHT SIDE */}
+              <div style={{ flex: 1 }}>
+                <p className="joke-question" style={{ fontSize: "2.3rem", margin: "0 0 1rem 0" }}>
+                  <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{j.emoji}</span>
+                  {j.setup}
+                </p>
+
+                {show && (
+                  <p className="joke-punchline" style={{ fontSize: "2rem" }}>{j.punchline}</p>
+                )}
+
+                {!show && (
+                  <button
+                    className="reveal-btn"
+                    onClick={() => setShow(true)}
+                    style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
+                  >
+                    Reveal punchline
+                  </button>
+                )}
+
+                <div style={{ marginTop: "1rem", display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
+                  <button
+                    onClick={() => handleVote(j.id, 'up')}
+                    disabled={hasVoted}
+                    style={{
+                      padding: "0.5rem 1rem",
+                      background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
+                      border: "3px solid #000",
+                      boxShadow: "3px 3px 0 #000",
+                      fontWeight: "700",
+                      fontSize: "1.1rem",
+                      cursor: hasVoted ? "not-allowed" : "pointer",
+                      opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
+                    }}
+                  >
+                    👍 {votes.up}
+                  </button>
+                  <button
+                    onClick={() => handleVote(j.id, 'down')}
+                    disabled={hasVoted}
+                    style={{
+                      padding: "0.5rem 1rem",
+                      background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
+                      border: "3px solid #000",
+                      boxShadow: "3px 3px 0 #000",
+                      fontWeight: "700",
+                      fontSize: "1.1rem",
+                      cursor: hasVoted ? "not-allowed" : "pointer",
+                      opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
+                    }}
+                  >
+                    👎 {votes.down}
+                  </button>
+                </div>
+              </div>
+
             </div>
           );
         })}
