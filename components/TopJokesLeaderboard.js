@@ -69,7 +69,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                 <p className="joke-punchline" style={{ fontSize: "2rem", marginBottom: "1.5rem" }}>{j.punchline}</p>
               )}
 
-              {/* CONTROLS ROW - RANK, EMOJI, REVEAL, VOTES */}
+              {/* CONTROLS ROW - ALL VERTICALLY CENTERED */}
               <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
                 
                 {/* RANK BADGE */}
@@ -97,7 +97,10 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   style={{
                     fontSize: "3rem",
                     textDecoration: "none",
-                    transition: "transform 0.2s ease"
+                    transition: "transform 0.2s ease",
+                    display: "flex",
+                    alignItems: "center",
+                    height: "60px"
                   }}
                   onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.2)"}
                   onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
@@ -110,7 +113,13 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   <button
                     className="reveal-btn"
                     onClick={() => setShow(true)}
-                    style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
+                    style={{ 
+                      fontSize: "1.4rem", 
+                      fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui",
+                      height: "60px",
+                      display: "flex",
+                      alignItems: "center"
+                    }}
                   >
                     Reveal punchline
                   </button>
@@ -122,13 +131,17 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   disabled={hasVoted}
                   style={{
                     padding: "0.5rem 1rem",
+                    height: "60px",
                     background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
                     border: "3px solid #000",
                     boxShadow: "3px 3px 0 #000",
                     fontWeight: "700",
                     fontSize: "1.1rem",
                     cursor: hasVoted ? "not-allowed" : "pointer",
-                    opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
+                    opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.25rem"
                   }}
                 >
                   👍 {votes.up}
@@ -138,13 +151,17 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   disabled={hasVoted}
                   style={{
                     padding: "0.5rem 1rem",
+                    height: "60px",
                     background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
                     border: "3px solid #000",
                     boxShadow: "3px 3px 0 #000",
                     fontWeight: "700",
                     fontSize: "1.1rem",
                     cursor: hasVoted ? "not-allowed" : "pointer",
-                    opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
+                    opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.25rem"
                   }}
                 >
                   👎 {votes.down}
