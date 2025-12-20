@@ -2,6 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
 export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
   const [voteCounts, setVoteCounts] = useState(initialVotes || {});
@@ -54,61 +55,57 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
           const [show, setShow] = useState(false);
           const votes = voteCounts[j.id] || { up: 0, down: 0 };
           const hasVoted = votedJokes[j.id];
-          const netScore = votes.up - votes.down;
 
           return (
-            <div key={i} className="joke-item" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", position: "relative" }}>
+            <div key={i} className="joke-item">
               
-              {/* EMOJI - BOTTOM LEFT CORNER */}
-              <span style={{
-                position: "absolute",
-                bottom: "1rem",
-                left: "1rem",
-                fontSize: "3rem",
-                opacity: "0.3"
-              }}>
-                {j.emoji}
-              </span>
+              {/* JOKE SETUP - FULL WIDTH */}
+              <p className="joke-question" style={{ fontSize: "2.3rem", margin: "0 0 1.5rem 0" }}>
+                {j.setup}
+              </p>
 
-              {/* RANK BADGE - LEFT SIDE */}
-              <div style={{
-                flexShrink: 0,
-                background: "#ff5fa2",
-                border: "4px solid #000",
-                boxShadow: "4px 4px 0 #000",
-                borderRadius: "8px",
-                width: "80px",
-                padding: "1rem",
-                textAlign: "center"
-              }}>
+              {/* PUNCHLINE */}
+              {show && (
+                <p className="joke-punchline" style={{ fontSize: "2rem", marginBottom: "1.5rem" }}>{j.punchline}</p>
+              )}
+
+              {/* CONTROLS ROW - RANK, EMOJI, REVEAL, VOTES */}
+              <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
+                
+                {/* RANK BADGE */}
                 <div style={{
-                  fontSize: "2.5rem",
+                  flexShrink: 0,
+                  background: "#ff5fa2",
+                  border: "4px solid #000",
+                  boxShadow: "4px 4px 0 #000",
+                  borderRadius: "8px",
+                  width: "60px",
+                  height: "60px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "2rem",
                   fontWeight: "700",
-                  lineHeight: "1",
                   color: "#000"
                 }}>
                   #{i + 1}
                 </div>
-                <div style={{
-                  fontSize: "0.9rem",
-                  fontWeight: "700",
-                  marginTop: "0.5rem",
-                  color: "#fff"
-                }}>
-                  {netScore > 0 ? '+' : ''}{netScore}
-                </div>
-              </div>
 
-              {/* JOKE CONTENT - RIGHT SIDE */}
-              <div style={{ flex: 1 }}>
-                <p className="joke-question" style={{ fontSize: "2.3rem", margin: "0 0 1rem 0" }}>
-                  {j.setup}
-                </p>
+                {/* EMOJI LINK TO CATEGORY */}
+                <Link 
+                  href={`/${j.category_slug}`}
+                  style={{
+                    fontSize: "3rem",
+                    textDecoration: "none",
+                    transition: "transform 0.2s ease"
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.2)"}
+                  onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
+                >
+                  {j.emoji}
+                </Link>
 
-                {show && (
-                  <p className="joke-punchline" style={{ fontSize: "2rem" }}>{j.punchline}</p>
-                )}
-
+                {/* REVEAL BUTTON */}
                 {!show && (
                   <button
                     className="reveal-btn"
@@ -119,40 +116,39 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   </button>
                 )}
 
-                <div style={{ marginTop: "1rem", display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
-                  <button
-                    onClick={() => handleVote(j.id, 'up')}
-                    disabled={hasVoted}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
-                      border: "3px solid #000",
-                      boxShadow: "3px 3px 0 #000",
-                      fontWeight: "700",
-                      fontSize: "1.1rem",
-                      cursor: hasVoted ? "not-allowed" : "pointer",
-                      opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
-                    }}
-                  >
-                    👍 {votes.up}
-                  </button>
-                  <button
-                    onClick={() => handleVote(j.id, 'down')}
-                    disabled={hasVoted}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
-                      border: "3px solid #000",
-                      boxShadow: "3px 3px 0 #000",
-                      fontWeight: "700",
-                      fontSize: "1.1rem",
-                      cursor: hasVoted ? "not-allowed" : "pointer",
-                      opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
-                    }}
-                  >
-                    👎 {votes.down}
-                  </button>
-                </div>
+                {/* VOTING BUTTONS */}
+                <button
+                  onClick={() => handleVote(j.id, 'up')}
+                  disabled={hasVoted}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
+                    border: "3px solid #000",
+                    boxShadow: "3px 3px 0 #000",
+                    fontWeight: "700",
+                    fontSize: "1.1rem",
+                    cursor: hasVoted ? "not-allowed" : "pointer",
+                    opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
+                  }}
+                >
+                  👍 {votes.up}
+                </button>
+                <button
+                  onClick={() => handleVote(j.id, 'down')}
+                  disabled={hasVoted}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
+                    border: "3px solid #000",
+                    boxShadow: "3px 3px 0 #000",
+                    fontWeight: "700",
+                    fontSize: "1.1rem",
+                    cursor: hasVoted ? "not-allowed" : "pointer",
+                    opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
+                  }}
+                >
+                  👎 {votes.down}
+                </button>
               </div>
 
             </div>
