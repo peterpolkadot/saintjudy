@@ -42,10 +42,10 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
     <section style={{ marginTop: "2rem" }}>
       <div className="section-card">
         <h2 style={{ 
-          fontSize: "2.4rem",
+          fontSize: "2.5rem",
           textShadow: "3px 3px 0 #fff, 3px 3px 0 #000"
         }}>
-          <span style={{ fontSize: "2.4rem" }}>🏆</span> Judy's Best Jokes
+          <span style={{ fontSize: "2rem" }}>🏆</span> Judy's Best Jokes
         </h2>
       </div>
 
@@ -65,7 +65,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                 bottom: "1rem",
                 left: "1rem",
                 fontSize: "3rem",
-                opacity: "0.6"
+                opacity: "0.3"
               }}>
                 {j.emoji}
               </span>
@@ -73,7 +73,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
               {/* RANK BADGE - LEFT SIDE */}
               <div style={{
                 flexShrink: 0,
-                background: i < 3 ? "#FFD700" : "#ffe600",
+                background: "#ff5fa2",
                 border: "4px solid #000",
                 boxShadow: "4px 4px 0 #000",
                 borderRadius: "8px",
@@ -84,7 +84,8 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                 <div style={{
                   fontSize: "2.5rem",
                   fontWeight: "700",
-                  lineHeight: "1"
+                  lineHeight: "1",
+                  color: "#000"
                 }}>
                   #{i + 1}
                 </div>
@@ -92,7 +93,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   fontSize: "0.9rem",
                   fontWeight: "700",
                   marginTop: "0.5rem",
-                  color: netScore > 0 ? "#4CAF50" : netScore < 0 ? "#f44336" : "#666"
+                  color: "#fff"
                 }}>
                   {netScore > 0 ? '+' : ''}{netScore}
                 </div>
@@ -100,7 +101,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
 
               {/* JOKE CONTENT - RIGHT SIDE */}
               <div style={{ flex: 1 }}>
-                <p className="joke-question" style={{ fontSize: "2.2rem", margin: "0 0 1rem 0" }}>
+                <p className="joke-question" style={{ fontSize: "2.3rem", margin: "0 0 1rem 0" }}>
                   {j.setup}
                 </p>
 
