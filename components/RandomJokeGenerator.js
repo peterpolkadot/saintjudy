@@ -89,7 +89,42 @@ export default function RandomJokeGenerator({ jokes, category }) {
             </p>
 
             {showPunchline && (
-              <p className="joke-punchline" style={{ fontSize: "2rem" }}>{joke.punchline}</p>
+              <>
+                <p className="joke-punchline" style={{ fontSize: "2rem" }}>{joke.punchline}</p>
+                
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyContent: "center", marginTop: "1rem" }}>
+                  <button
+                    onClick={() => handleVote(joke.id, 'up')}
+                    disabled={hasVoted}
+                    style={{
+                      padding: "0.5rem 1rem",
+                      background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
+                      border: "3px solid #000",
+                      boxShadow: "3px 3px 0 #000",
+                      fontWeight: "700",
+                      cursor: hasVoted ? "not-allowed" : "pointer",
+                      opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
+                    }}
+                  >
+                    👍 {votes.up}
+                  </button>
+                  <button
+                    onClick={() => handleVote(joke.id, 'down')}
+                    disabled={hasVoted}
+                    style={{
+                      padding: "0.5rem 1rem",
+                      background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
+                      border: "3px solid #000",
+                      boxShadow: "3px 3px 0 #000",
+                      fontWeight: "700",
+                      cursor: hasVoted ? "not-allowed" : "pointer",
+                      opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
+                    }}
+                  >
+                    👎 {votes.down}
+                  </button>
+                </div>
+              </>
             )}
 
             <div
@@ -106,50 +141,13 @@ export default function RandomJokeGenerator({ jokes, category }) {
                 </button>
               )}
 
-              {showPunchline && (
-                <>
-                  <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyContent: "center" }}>
-                    <button
-                      onClick={() => handleVote(joke.id, 'up')}
-                      disabled={hasVoted}
-                      style={{
-                        padding: "0.5rem 1rem",
-                        background: hasVoted === 'up' ? "#45a049" : hasVoted ? "#ccc" : "#4CAF50",
-                        border: "3px solid #000",
-                        boxShadow: "3px 3px 0 #000",
-                        fontWeight: "700",
-                        cursor: hasVoted ? "not-allowed" : "pointer",
-                        opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
-                      }}
-                    >
-                      👍 {votes.up}
-                    </button>
-                    <button
-                      onClick={() => handleVote(joke.id, 'down')}
-                      disabled={hasVoted}
-                      style={{
-                        padding: "0.5rem 1rem",
-                        background: hasVoted === 'down' ? "#d32f2f" : hasVoted ? "#ccc" : "#f44336",
-                        border: "3px solid #000",
-                        boxShadow: "3px 3px 0 #000",
-                        fontWeight: "700",
-                        cursor: hasVoted ? "not-allowed" : "pointer",
-                        opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
-                      }}
-                    >
-                      👎 {votes.down}
-                    </button>
-                  </div>
-
-                  <button
-                    className="pink-btn"
-                    onClick={nextJoke}
-                    style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
-                  >
-                    🔄 Another Joke!
-                  </button>
-                </>
-              )}
+              <button
+                className="pink-btn"
+                onClick={nextJoke}
+                style={{ fontSize: "1.4rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
+              >
+                🔄 Another Joke!
+              </button>
             </div>
           </>
         )}
