@@ -72,7 +72,7 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
               {/* CONTROLS ROW */}
               <div style={{ 
                 display: "grid", 
-                gridTemplateColumns: "60px 60px auto 1fr 1fr",
+                gridTemplateColumns: "60px 60px auto 200px 200px",
                 gap: "1rem", 
                 alignItems: "center"
               }}>
@@ -113,21 +113,23 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                   {j.emoji}
                 </Link>
 
-                {/* REVEAL BUTTON */}
-                {!show ? (
-                  <button
-                    className="reveal-btn"
-                    onClick={() => setShow(true)}
-                    style={{ 
-                      fontSize: "1.4rem", 
-                      fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui"
-                    }}
-                  >
-                    Reveal punchline
-                  </button>
-                ) : <div></div>}
+                {/* REVEAL BUTTON (or empty space) */}
+                <div>
+                  {!show && (
+                    <button
+                      className="reveal-btn"
+                      onClick={() => setShow(true)}
+                      style={{ 
+                        fontSize: "1.4rem", 
+                        fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui"
+                      }}
+                    >
+                      Reveal punchline
+                    </button>
+                  )}
+                </div>
 
-                {/* VOTING BUTTONS */}
+                {/* VOTING BUTTONS - FIXED POSITION */}
                 <button
                   onClick={() => handleVote(j.id, 'up')}
                   disabled={hasVoted}
@@ -139,7 +141,8 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                     fontWeight: "700",
                     fontSize: "1.1rem",
                     cursor: hasVoted ? "not-allowed" : "pointer",
-                    opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1
+                    opacity: hasVoted && hasVoted !== 'up' ? 0.5 : 1,
+                    width: "100%"
                   }}
                 >
                   👍 {votes.up}
@@ -155,7 +158,8 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
                     fontWeight: "700",
                     fontSize: "1.1rem",
                     cursor: hasVoted ? "not-allowed" : "pointer",
-                    opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1
+                    opacity: hasVoted && hasVoted !== 'down' ? 0.5 : 1,
+                    width: "100%"
                   }}
                 >
                   👎 {votes.down}
