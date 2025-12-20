@@ -41,7 +41,12 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
   return (
     <section style={{ marginTop: "2rem" }}>
       <div className="section-card">
-        <h2 style={{ fontSize: "2.5rem" }}>🏆 Judy's Best Jokes 🏆</h2>
+        <h2 style={{ 
+          fontSize: "2.5rem",
+          textShadow: "3px 3px 0 #fff, 3px 3px 0 #000"
+        }}>
+          <span style={{ fontSize: "2rem" }}>🏆</span> Judy's Best Jokes
+        </h2>
       </div>
 
       <div className="jokes-list" style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -52,8 +57,19 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
           const netScore = votes.up - votes.down;
 
           return (
-            <div key={i} className="joke-item" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
+            <div key={i} className="joke-item" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", position: "relative" }}>
               
+              {/* EMOJI - BOTTOM LEFT CORNER */}
+              <span style={{
+                position: "absolute",
+                bottom: "1rem",
+                left: "1rem",
+                fontSize: "3rem",
+                opacity: "0.3"
+              }}>
+                {j.emoji}
+              </span>
+
               {/* RANK BADGE - LEFT SIDE */}
               <div style={{
                 flexShrink: 0,
@@ -85,7 +101,6 @@ export default function TopJokesLeaderboard({ initialJokes, initialVotes }) {
               {/* JOKE CONTENT - RIGHT SIDE */}
               <div style={{ flex: 1 }}>
                 <p className="joke-question" style={{ fontSize: "2.3rem", margin: "0 0 1rem 0" }}>
-                  <span className="inline-emoji" style={{ fontSize: "2.8rem" }}>{j.emoji}</span>
                   {j.setup}
                 </p>
 

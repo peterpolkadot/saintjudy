@@ -68,7 +68,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
   const hasVoted = joke ? votedJokes[joke.id] : false;
 
   return (
-    <div className="joke-generator">
+    <div className="joke-generator" style={{ marginTop: "6rem" }}>
       <div className="joke-card-big">
 
         {!joke && (
@@ -77,7 +77,7 @@ export default function RandomJokeGenerator({ jokes, category }) {
             onClick={nextJoke}
             style={{ fontSize: "2.3rem", fontFamily: "Fredoka, 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui" }}
           >
-            😂 Tell me a random joke!
+            ⬇️ Tell me a joke Judy!
           </button>
         )}
 

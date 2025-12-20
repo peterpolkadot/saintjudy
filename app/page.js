@@ -42,7 +42,13 @@ export default async function HomePage() {
 
       <section className="hero">
         <div className="hero-content container">
-          <h1 className="hero-title" style={{ background: "#ff5fa2" }}>😂 Judy's Jokes for Kids 😂</h1>
+          <h1 className="hero-title" style={{ 
+            background: "#ff5fa2",
+            fontSize: "3.5rem",
+            textShadow: "3px 3px 0 #ffe600, 3px 3px 0 #000"
+          }}>
+            <span style={{ fontSize: "2.8rem" }}>😂</span> Judy's Jokes for Kids
+          </h1>
           <p style={{ 
             fontSize: "1.3rem", 
             fontWeight: "600", 
