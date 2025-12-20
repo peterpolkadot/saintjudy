@@ -12,7 +12,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RandomJokeGenerator from "@/components/RandomJokeGenerator";
 import TopJokesLeaderboard from "@/components/TopJokesLeaderboard";
-import Link from "next/link";
 
 export async function generateMetadata() {
   const seo = await getPageSEO("home");
@@ -25,7 +24,6 @@ export async function generateMetadata() {
 export default async function HomePage() {
   const config = await getSiteConfig();
   const navigation = await getNavigation();
-  const categories = await getCategories();
   const allJokes = await getAllJokes();
   const { jokes: topJokes, votes: topVotes } = await getTopJokes(10);
 
@@ -65,21 +63,6 @@ export default async function HomePage() {
         <TopJokesLeaderboard initialJokes={topJokes} initialVotes={topVotes} />
         
         <RandomJokeGenerator jokes={allJokes} category="random" />
-
-        <h2 className="section-title" style={{ marginTop: "4rem" }}>Pick a joke category</h2>
-
-        <div className="categories-grid">
-          {categories.map(c => (
-            <Link
-              key={c.category_slug}
-              href={`/${c.category_slug}`}
-              className="category-card"
-            >
-              <div>{c.emoji}</div>
-              <h3>{c.category_name}</h3>
-            </Link>
-          ))}
-        </div>
       </main>
 
       <Footer />
